@@ -19,7 +19,7 @@ class API():
             "Accept": "application/json",
             "Content-Type": "application/json"
         })
-        self.set_httpclient(HTTPClient(base_url, timeout))
+        self.set_httpclient(HTTPClient(base_url, timeout, self.get_headers()))
 
 
     def __str__(self) -> str:
@@ -49,11 +49,10 @@ Version: {self.__version__}"""
 
     def encode_api_key(self, key: str, secret: str):
         self.set_x_api_key(base64.b64encode(f"{key}:{secret}".encode("ascii")))
+        self.get_headers()["x-api-key"] = self.get_x_api_key()
+        self.get_httpclient().set_headers(self.get_headers())
 
 
 api = API()
 
 api.encode_api_key("WD-Z33623AQYLUFOYSZLFPQYAGVOJIY", "d-XW_9~Tz2BP.MKt7YF0HnnApO8aE8-kMUENa7l4")
-
-print(api)
-
