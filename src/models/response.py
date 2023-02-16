@@ -16,8 +16,10 @@ class Response():
         self.set_message(data["message"])
         self.set_data(data["data"])
         
-        if data["note"]:
+        if "note" in data.keys():
             self.set_note(data["note"])
+        else:
+            self.set_note("")
         
     def __str__(self) -> str:
         return f"""
