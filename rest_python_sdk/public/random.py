@@ -1,3 +1,10 @@
+from __future__ import annotations
+
+__all__ = [
+    "string",
+    "number"
+]
+
 import typing as t
 
 from rest_python_sdk.restclient import RESTClient

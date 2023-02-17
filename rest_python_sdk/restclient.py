@@ -1,8 +1,14 @@
+from __future__ import annotations
+
+__all__ = [
+    "RESTClient",
+]
+
 import typing as t
 
 import requests
 
-from .models.response import Response
+from rest_python_sdk.models.response import Response
 
 
 class RESTClient:

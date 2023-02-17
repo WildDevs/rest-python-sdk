@@ -1,5 +1,3 @@
-from .validate import *
-
 __all__ = [
     "email",
     "btc",
@@ -25,3 +23,6 @@ __all__ = [
     "licenseplate",
     "postalcode"
 ]
+
+from rest_python_sdk.member import validate
+from rest_python_sdk.member.validate import *

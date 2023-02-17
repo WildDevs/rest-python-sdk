@@ -1,3 +1,9 @@
+from __future__ import annotations
+
+__all__ = [
+    "Response",
+]
+
 import typing as t
 from dataclasses import dataclass
 

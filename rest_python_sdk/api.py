@@ -1,8 +1,14 @@
+from __future__ import annotations
+
+__all__ = [
+    "WildDevsAPI",
+]
+
 import base64
 import typing as t
 
-from .restclient import RESTClient
-from .__version__ import __version__
+from rest_python_sdk.restclient import RESTClient
+from rest_python_sdk.__version__ import __version__
 
 
 class WildDevsAPI():
