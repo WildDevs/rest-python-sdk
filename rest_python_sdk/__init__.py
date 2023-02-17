@@ -29,7 +29,6 @@ __all__ = [
     "semver",
     "licenseplate",
     "postalcode",
-    
 ]
 
 from rest_python_sdk import restclient

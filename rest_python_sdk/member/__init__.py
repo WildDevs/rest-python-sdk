@@ -21,7 +21,7 @@ __all__ = [
     "tax",
     "semver",
     "licenseplate",
-    "postalcode"
+    "postalcode",
 ]
 
 from rest_python_sdk.member import validate

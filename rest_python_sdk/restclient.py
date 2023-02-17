@@ -23,11 +23,11 @@ class RESTClient:
 
     def __str__(self) -> str:
         return f"BaseURL: {self.base_url}\nTimeout: {self.timeout}"
-        
+
     @property
     def base_url(self):
         return self._base_url
-    
+
     @base_url.setter
     def base_url(self, value: str):
         if not value.startswith("https://"):
@@ -35,29 +35,32 @@ class RESTClient:
             return
         else:
             self._base_url = value
-    
+
     @property
     def timeout(self):
         return self._timeout
-    
+
     @timeout.setter
     def timeout(self, value: int):
         if value > 30 or value < 5:
             print("Timeout must be a value between 5 and 30!")
         else:
             self._timeout = value
-    
+
     @property
     def headers(self):
         return self._headers
-    
+
     @headers.setter
     def headers(self, value: dict[str, t.Any]):
         self._headers = value
 
-
-    def _request(self, method: str, endpoint: str, payload: t.Optional[dict[str, t.Any]] = None) -> Response:
-        r = requests.request(method, f"{self.base_url}{endpoint}", headers=self.headers, json=payload)
+    def _request(
+        self, method: str, endpoint: str, payload: t.Optional[dict[str, t.Any]] = None
+    ) -> Response:
+        r = requests.request(
+            method, f"{self.base_url}{endpoint}", headers=self.headers, json=payload
+        )
         return Response(r.json())
 
     def get(self, endpoint: str):
