@@ -57,27 +57,27 @@ class RESTClient:
     @headers.setter
     def headers(self, value: dict[str, t.Any]):
         self._headers = value
-    
+
     @property
     def validate(self):
         return self._validate
-    
+
     @validate.setter
     def validate(self, value: str):
         self._validate = value
-    
+
     @property
     def utils(self):
         return self._utils
-    
+
     @utils.setter
     def utils(self, value: str):
         self._utils = value
-    
+
     @property
     def random(self):
         return self._random
-    
+
     @random.setter
     def random(self, value: str):
         self._random = value
@@ -102,98 +102,76 @@ class RESTClient:
     def delete(self, endpoint: str):
         return self._request("DELETE", endpoint)
 
-
     def validate_email(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}email", payload=payload)
 
     def validate_btc(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}btc", payload=payload)
 
-
     def validate_eth(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}eth", payload=payload)
-
 
     def validate_bic(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}bic", payload=payload)
 
-
     def validate_creditcard(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}creditcard", payload=payload)
-
 
     def validate_ean(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}ean", payload=payload)
 
-
     def validate_fqdn(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}fqdn", payload=payload)
-
 
     def validate_iban(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}iban", payload=payload)
 
-
     def validate_imei(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}imei", payload=payload)
-
 
     def validate_ip(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}ip", payload=payload)
 
-
     def validate_identitycard(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}identitycard", payload=payload)
-
 
     def validate_isbn(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}isbn", payload=payload)
 
-
     def validate_isin(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}isin", payload=payload)
-
 
     def validate_issn(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}issn", payload=payload)
 
-
     def validate_mac(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}mac", payload=payload)
-
 
     def validate_magnet(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}magnet", payload=payload)
 
-
     def validate_mimetype(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}mimetype", payload=payload)
-
 
     def validate_password(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}password", payload=payload)
 
-
     def validate_uuid(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}uuid", payload=payload)
-
 
     def validate_tax(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}tax", payload=payload)
 
-
     def validate_semver(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}semver", payload=payload)
-
 
     def validate_licenseplate(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}licenseplate", payload=payload)
 
-
     def validate_postalcode(self, payload: dict[str, t.Any]):
         return self.post(f"{self.validate}postalcode", payload=payload)
 
-# Utils Endpoint
+    # Utils Endpoint
     def utils_encode(self, payload: dict[str, t.Any]):
         return self.post(f"{self.utils}encode", payload=payload)
 
@@ -203,7 +181,7 @@ class RESTClient:
     def utils_hash(self, payload: dict[str, t.Any]):
         return self.post(f"{self.utils}hash", payload=payload)
 
-# Random Endpoint
+    # Random Endpoint
     def random_string(self, payload: dict[str, t.Any]):
         return self.post(f"{self.random}string", payload=payload)
 
