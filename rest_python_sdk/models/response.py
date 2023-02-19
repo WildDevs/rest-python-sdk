@@ -7,28 +7,27 @@ __all__ = [
 import typing as t
 from dataclasses import dataclass
 
+from rest_python_sdk.errors.errors import send_error_response
+
 
 @dataclass
 class Response:
     _status: str
     _code: int
     _message: str
-    _note: str
     _data: t.Any
 
     def __init__(self, data: dict[str, t.Any]) -> None:
+        if "note" in data.keys():
+            send_error_response(data)
         self.status = data["status"]
         self.code = data["code"]
         self.message = data["message"]
         self.data = data["data"]
 
-        if "note" in data.keys():
-            self.note = data["note"]
-        else:
-            self.note = ""
 
     def __str__(self) -> str:
-        return f"Status: {self.status}\nCode: {self.code}\nMessage: {self.message}\nNote: {self.note}\nData: {self.data}"
+        return f"Status: {self.status}\nCode: {self.code}\nMessage: {self.message}\nData: {self.data}"
 
     @property
     def status(self):
@@ -53,14 +52,6 @@ class Response:
     @message.setter
     def message(self, value: str):
         self._message = value
-
-    @property
-    def note(self):
-        return self._note
-
-    @note.setter
-    def note(self, value: str):
-        self._note = value
 
     @property
     def data(self):
