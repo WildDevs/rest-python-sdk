@@ -67,25 +67,25 @@ class GatewayTimeoutError(WildDevsError):
 
 
 def send_error_response(data: dict[str, t.Any]):
-    if data["code"] == 400:
-        if "allowed" in data["note"]:
+    code = data["code"]
+    error = data["note"]
+    if code == 400:
+        if not_allowed_fields := data.get("notAllowedFields"):
             return BadRequestError(
-                data["note"], not_allowed_fields=data["notAllowedFields"]
+                error, not_allowed_fields=not_allowed_fields
             )
-        if "missing" in data["note"]:
-            return BadRequestError(data["note"], missing_fields=data["missingFields"])
-        return BadRequestError(data["note"])
-    if data["code"] == 401:
-        return UnauthorizedError(data["note"])
-    if data["code"] == 403:
-        return ForbiddenError(data["note"])
-    if data["code"] == 404:
-        return NotFoundError(data["note"])
-    if data["code"] == 500:
-        return InternalServerError(data["note"])
-    if data["code"] == 502:
-        return BadGatewayError(data["note"])
-    if data["code"] == 503:
-        return ServiceUnavailableError(data["note"])
-    if data["code"] == 504:
-        return GatewayTimeoutError(data["note"])
+        if missing_fields :=  data.get("missingFields"):
+            return BadRequestError(error, missing_fields=missing_fields)
+        return BadRequestError(error)
+    return error_dict[code](error)
+
+
+error_dict: dict[int, type[WildDevsError]] = {
+    401: UnauthorizedError,
+    403: ForbiddenError,
+    404: NotFoundError,
+    500: InternalServerError,
+    502: BadGatewayError,
+    503: ServiceUnavailableError,
+    504: GatewayTimeoutError
+}
