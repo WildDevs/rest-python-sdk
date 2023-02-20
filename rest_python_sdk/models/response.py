@@ -20,18 +20,21 @@ class APIResponse:
     _headers: ResponseHeaders
     _as_dict: dict[dict[str, t.Any], dict[str, str]]
 
-    def __init__(self, data: dict[str, t.Any], headers: dict[str, str]) -> None:
+    def __init__(self, data: dict[str, t.Any], headers: t.Optional[dict[str, str]] = None) -> None:
         if data["code"] >= 400:
             raise send_error_response(data)
         self.status = data["status"]
         self.code = data["code"]
         self.message = data["message"]
         self.data = data["data"]
-        self.as_dict = {
-            "Response": data,
-            "Headers": headers
-        }
-        self.headers = ResponseHeaders(headers)
+        if headers:
+            self.as_dict = {
+                "Response": data,
+                "Headers": headers
+            }
+            self.headers = ResponseHeaders(headers)
+        else:
+            self.as_dict = data
 
     def __str__(self) -> str:
         return f"{self.as_dict}"
