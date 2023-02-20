@@ -8,7 +8,7 @@ import typing as t
 
 import requests
 
-from rest_python_sdk.models.response import Response
+from rest_python_sdk.models.response import APIResponse
 
 
 class RESTClient:
@@ -84,11 +84,11 @@ class RESTClient:
 
     def _request(
         self, method: str, endpoint: str, payload: t.Optional[dict[str, t.Any]] = None
-    ) -> Response:
+    ) -> APIResponse:
         r = requests.request(
             method, f"{self.base_url}{endpoint}", headers=self.headers, json=payload
         )
-        return Response(r.json())
+        return APIResponse(r.json(), r.headers)
 
     def get(self, endpoint: str):
         return self._request("GET", endpoint)
