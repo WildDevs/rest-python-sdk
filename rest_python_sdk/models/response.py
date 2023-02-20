@@ -18,13 +18,12 @@ class Response:
     _data: t.Any
 
     def __init__(self, data: dict[str, t.Any]) -> None:
-        if "note" in data.keys():
-            send_error_response(data)
+        if data["code"] >= 400:
+            raise send_error_response(data)
         self.status = data["status"]
         self.code = data["code"]
         self.message = data["message"]
         self.data = data["data"]
-
 
     def __str__(self) -> str:
         return f"Status: {self.status}\nCode: {self.code}\nMessage: {self.message}\nData: {self.data}"
