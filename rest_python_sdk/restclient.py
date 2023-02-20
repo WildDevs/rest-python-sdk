@@ -9,6 +9,7 @@ import typing as t
 import requests
 
 from rest_python_sdk.models.response import APIResponse
+from rest_python_sdk.errors.errors import send_error_response
 
 
 class RESTClient:
@@ -92,6 +93,12 @@ class RESTClient:
         r = requests.request(
             method, f"{self.base_url}{endpoint}", headers=self.headers, json=payload
         )
+        if r.status_code == 404:
+            resp = {
+                "code": r.status_code,
+                "note": f"{r.url} {r.reason}"
+            }
+            raise send_error_response(resp)
         if not return_headers:
             return APIResponse(r.json())
         else:
@@ -270,8 +277,34 @@ class RESTClient:
 
     # Random Endpoint
     def random_string(
-        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        method: str = "",
+        length: int = 30,
+        min: int = 30,
+        max: int = 30,
+        pool: str = "",
+        prefix: str = "",
+        batch: int = 0,
+        dashes: bool = True,
+        name: str = "",
+        namespace: str = "",
+        return_headers: t.Optional[bool] = False,
     ):
+        if not payload:
+            payload = {
+                "method": method,
+                "length": length,
+                "min": min,
+                "max": max,
+                "pool": pool,
+                "prefix": prefix,
+                "batch": batch,
+                "dashes": dashes,
+                "name": name,
+                "namespace": namespace
+            }
         return self.post(f"{self.random}string", payload, return_headers=return_headers)
 
     def random_number(
