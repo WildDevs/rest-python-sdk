@@ -83,7 +83,11 @@ class RESTClient:
         self._random = value
 
     def _request(
-        self, method: str, endpoint: str, payload: t.Optional[dict[str, t.Any]] = None, return_headers: t.Optional[bool] = False
+        self,
+        method: str,
+        endpoint: str,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        return_headers: t.Optional[bool] = False,
     ) -> APIResponse:
         r = requests.request(
             method, f"{self.base_url}{endpoint}", headers=self.headers, json=payload
@@ -96,97 +100,181 @@ class RESTClient:
     def get(self, endpoint: str, *, return_headers: t.Optional[bool] = False):
         return self._request("GET", endpoint, return_headers=return_headers)
 
-    def post(self, endpoint: str, payload: dict[str, t.Any], return_headers: t.Optional[bool] = False):
+    def post(
+        self,
+        endpoint: str,
+        payload: dict[str, t.Any],
+        return_headers: t.Optional[bool] = False,
+    ):
         return self._request("POST", endpoint, payload, return_headers=return_headers)
 
-    def put(self, endpoint: str, payload: dict[str, t.Any], return_headers: t.Optional[bool] = False):
+    def put(
+        self,
+        endpoint: str,
+        payload: dict[str, t.Any],
+        return_headers: t.Optional[bool] = False,
+    ):
         return self._request("PUT", endpoint, payload, return_headers)
 
     def delete(self, endpoint: str, return_headers: t.Optional[bool] = False):
         return self._request("DELETE", endpoint, return_headers)
 
-    def validate_email(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
-        return self.post(f"{self.validate}email", payload, return_headers=return_headers)
+    def validate_email(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
+        return self.post(
+            f"{self.validate}email", payload, return_headers=return_headers
+        )
 
-    def validate_btc(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_btc(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}btc", payload, return_headers=return_headers)
 
-    def validate_eth(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_eth(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}eth", payload, return_headers=return_headers)
 
-    def validate_bic(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_bic(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}bic", payload, return_headers=return_headers)
 
-    def validate_creditcard(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
-        return self.post(f"{self.validate}creditcard", payload, return_headers=return_headers)
+    def validate_creditcard(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
+        return self.post(
+            f"{self.validate}creditcard", payload, return_headers=return_headers
+        )
 
-    def validate_ean(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_ean(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}ean", payload, return_headers=return_headers)
 
-    def validate_fqdn(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_fqdn(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}fqdn", payload, return_headers=return_headers)
 
-    def validate_iban(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_iban(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}iban", payload, return_headers=return_headers)
 
-    def validate_imei(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_imei(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}imei", payload, return_headers=return_headers)
 
-    def validate_ip(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_ip(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}ip", payload, return_headers=return_headers)
 
-    def validate_identitycard(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
-        return self.post(f"{self.validate}identitycard", payload, return_headers=return_headers)
+    def validate_identitycard(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
+        return self.post(
+            f"{self.validate}identitycard", payload, return_headers=return_headers
+        )
 
-    def validate_isbn(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_isbn(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}isbn", payload, return_headers=return_headers)
 
-    def validate_isin(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_isin(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}isin", payload, return_headers=return_headers)
 
-    def validate_issn(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_issn(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}issn", payload, return_headers=return_headers)
 
-    def validate_mac(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_mac(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}mac", payload, return_headers=return_headers)
 
-    def validate_magnet(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
-        return self.post(f"{self.validate}magnet", payload, return_headers=return_headers)
+    def validate_magnet(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
+        return self.post(
+            f"{self.validate}magnet", payload, return_headers=return_headers
+        )
 
-    def validate_mimetype(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
-        return self.post(f"{self.validate}mimetype", payload, return_headers=return_headers)
+    def validate_mimetype(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
+        return self.post(
+            f"{self.validate}mimetype", payload, return_headers=return_headers
+        )
 
-    def validate_password(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
-        return self.post(f"{self.validate}password", payload, return_headers=return_headers)
+    def validate_password(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
+        return self.post(
+            f"{self.validate}password", payload, return_headers=return_headers
+        )
 
-    def validate_uuid(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_uuid(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}uuid", payload, return_headers=return_headers)
 
-    def validate_tax(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def validate_tax(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.validate}tax", payload, return_headers=return_headers)
 
-    def validate_semver(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
-        return self.post(f"{self.validate}semver", payload, return_headers=return_headers)
+    def validate_semver(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
+        return self.post(
+            f"{self.validate}semver", payload, return_headers=return_headers
+        )
 
-    def validate_licenseplate(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
-        return self.post(f"{self.validate}licenseplate", payload, return_headers=return_headers)
+    def validate_licenseplate(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
+        return self.post(
+            f"{self.validate}licenseplate", payload, return_headers=return_headers
+        )
 
-    def validate_postalcode(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
-        return self.post(f"{self.validate}postalcode", payload, return_headers=return_headers)
+    def validate_postalcode(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
+        return self.post(
+            f"{self.validate}postalcode", payload, return_headers=return_headers
+        )
 
     # Utils Endpoint
-    def utils_encode(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def utils_encode(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.utils}encode", payload, return_headers=return_headers)
 
-    def utils_decode(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def utils_decode(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.utils}decode", payload, return_headers=return_headers)
 
-    def utils_hash(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def utils_hash(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.utils}hash", payload, return_headers=return_headers)
 
     # Random Endpoint
-    def random_string(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def random_string(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.random}string", payload, return_headers=return_headers)
 
-    def random_number(self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False):
+    def random_number(
+        self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
+    ):
         return self.post(f"{self.random}number", payload, return_headers=return_headers)
