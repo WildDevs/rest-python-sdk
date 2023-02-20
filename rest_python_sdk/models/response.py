@@ -62,7 +62,7 @@ class APIResponse:
     @data.setter
     def data(self, value):
         self._data = value
-    
+
     @property
     def headers(self):
         return self._headers

@@ -44,7 +44,9 @@ class ResponseHeaders:
         self._x_ratelimit_retry_after = float(headers["x-ratelimit-retry-after"])
         self._x_ratelimit_limit = int(headers["x-ratelimit-limit"])
         self._x_ratelimit_remaining = int(headers["x-ratelimit-remaining"])
-        self._x_ratelimit_reset = datetime.strptime(headers["x-ratelimit-reset"], "%a %b %d %Y %H:%M:%S %Z%z")
+        self._x_ratelimit_reset = datetime.strptime(
+            headers["x-ratelimit-reset"], "%a %b %d %Y %H:%M:%S %Z%z"
+        )
         self._etag = headers["ETag"]
         self._vary = headers["Vary"]
         self._strict_transport_security = headers["Strict-Transport-Security"]
@@ -52,7 +54,9 @@ class ResponseHeaders:
         self._x_content_type_options = headers["X-Content-Type-Options"]
         self._x_download_options = headers["X-Download-Options"]
         self._x_frame_options = headers["X-Frame-Options"]
-        self._x_permitted_cross_domain_policies = headers["X-Permitted-Cross-Domain-Policies"]
+        self._x_permitted_cross_domain_policies = headers[
+            "X-Permitted-Cross-Domain-Policies"
+        ]
         self._x_robots_tag = headers["X-Robots-Tag"]
         self._x_xss_protection = headers["X-XSS-Protection"]
         self._as_dict = headers
@@ -67,19 +71,19 @@ class ResponseHeaders:
     @property
     def date(self):
         return self._date
-    
+
     @property
     def content_type(self):
         return self._content_type
-    
+
     @property
     def content_length(self):
         return self._content_length
-    
+
     @property
     def connection(self):
         return self._connection
-    
+
     @property
     def x_powered_by(self):
         return self._x_powered_by
@@ -91,7 +95,7 @@ class ResponseHeaders:
     @property
     def access_control_allow_headers(self):
         return self._access_control_allow_headers
-    
+
     @property
     def x_ratelimit_retry_after(self):
         return self._x_ratelimit_retry_after
@@ -99,39 +103,39 @@ class ResponseHeaders:
     @property
     def x_ratelimit_limit(self):
         return self._x_ratelimit_limit
-    
+
     @property
     def x_ratelimit_remaining(self):
         return self._x_ratelimit_remaining
-    
+
     @property
     def x_ratelimit_reset(self):
         return self._x_ratelimit_reset
-    
+
     @property
     def etag(self):
         return self._etag
-    
+
     @property
     def vary(self):
         return self._vary
-    
+
     @property
     def strict_transport_security(self):
         return self._strict_transport_security
-    
+
     @property
     def referrer_policy(self):
         return self._referrer_policy
-    
+
     @property
     def x_content_type_options(self):
         return self._x_content_type_options
-    
+
     @property
     def x_download_options(self):
         return self._x_download_options
-    
+
     @property
     def x_frame_options(self):
         return self._x_frame_options
@@ -139,7 +143,7 @@ class ResponseHeaders:
     @property
     def x_permitted_cross_domain_policies(self):
         return self._x_permitted_cross_domain_policies
-    
+
     @property
     def x_robots_tag(self):
         return self._x_robots_tag
