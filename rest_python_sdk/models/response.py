@@ -18,6 +18,7 @@ class APIResponse:
     _message: str
     _data: t.Any
     _headers: ResponseHeaders
+    _as_dict: dict[dict[str, t.Any], dict[str, str]]
 
     def __init__(self, data: dict[str, t.Any], headers: dict[str, str]) -> None:
         if data["code"] >= 400:
@@ -26,10 +27,14 @@ class APIResponse:
         self.code = data["code"]
         self.message = data["message"]
         self.data = data["data"]
+        self.as_dict = {
+            "Response": data,
+            "Headers": headers
+        }
         self.headers = ResponseHeaders(headers)
 
     def __str__(self) -> str:
-        return f"Status: {self.status}\nCode: {self.code}\nMessage: {self.message}\nData: {self.data}"
+        return f"{self.as_dict}"
 
     @property
     def status(self):
@@ -70,3 +75,11 @@ class APIResponse:
     @headers.setter
     def headers(self, value):
         self._headers = value
+
+    @property
+    def as_dict(self):
+        return self._as_dict
+
+    @as_dict.setter
+    def as_dict(self, value: dict[str, t.Any]):
+        self._as_dict = value
