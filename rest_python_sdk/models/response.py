@@ -6,6 +6,7 @@ __all__ = [
 
 import typing as t
 from dataclasses import dataclass
+from requests.models import CaseInsensitiveDict
 
 from rest_python_sdk.errors.errors import send_error_response
 from rest_python_sdk.models.response_headers import ResponseHeaders
@@ -18,10 +19,12 @@ class APIResponse:
     _message: str
     _data: t.Any
     _headers: ResponseHeaders
-    _as_dict: dict[dict[str, t.Any], dict[str, str]]
+    _as_dict: t.Union[dict[str, str], dict[dict[str, t.Any], dict[str, str]]]
 
     def __init__(
-        self, data: dict[str, t.Any], headers: t.Optional[dict[str, str]] = None
+        self,
+        data: dict[str, t.Any],
+        headers: t.Optional[CaseInsensitiveDict[str]] = None,
     ) -> None:
         if data["code"] >= 400:
             raise send_error_response(data)
@@ -67,7 +70,7 @@ class APIResponse:
         return self._data
 
     @data.setter
-    def data(self, value):
+    def data(self, value: dict[str, t.Any]):
         self._data = value
 
     @property
@@ -75,7 +78,7 @@ class APIResponse:
         return self._headers
 
     @headers.setter
-    def headers(self, value):
+    def headers(self, value: ResponseHeaders):
         self._headers = value
 
     @property
@@ -83,5 +86,7 @@ class APIResponse:
         return self._as_dict
 
     @as_dict.setter
-    def as_dict(self, value: dict[str, t.Any]):
+    def as_dict(
+        self, value: t.Union[dict[str, t.Any], dict[dict[str, t.Any], dict[str, str]]]
+    ):
         self._as_dict = value

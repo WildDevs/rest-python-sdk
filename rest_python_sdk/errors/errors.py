@@ -71,10 +71,8 @@ def send_error_response(data: dict[str, t.Any]):
     error = data["note"]
     if code == 400:
         if not_allowed_fields := data.get("notAllowedFields"):
-            return BadRequestError(
-                error, not_allowed_fields=not_allowed_fields
-            )
-        if missing_fields :=  data.get("missingFields"):
+            return BadRequestError(error, not_allowed_fields=not_allowed_fields)
+        if missing_fields := data.get("missingFields"):
             return BadRequestError(error, missing_fields=missing_fields)
         return BadRequestError(error)
     return error_dict[code](error)
@@ -87,5 +85,5 @@ error_dict: dict[int, type[WildDevsError]] = {
     500: InternalServerError,
     502: BadGatewayError,
     503: ServiceUnavailableError,
-    504: GatewayTimeoutError
+    504: GatewayTimeoutError,
 }

@@ -5,6 +5,7 @@ __all__ = [
 ]
 
 from datetime import datetime
+from requests.models import CaseInsensitiveDict
 
 
 class ResponseHeaders:
@@ -15,7 +16,7 @@ class ResponseHeaders:
     _connection: str
     _x_powered_by: str
     _access_control_allow_origin: str
-    _access_control_allow_headers: list[str]
+    _access_control_allow_headers: str
     _x_ratelimit_retry_after: float
     _x_ratelimit_limit: int
     _x_ratelimit_remaining: int
@@ -30,9 +31,9 @@ class ResponseHeaders:
     _x_permitted_cross_domain_policies: str
     _x_robots_tag: str
     _x_xss_protection: str
-    _as_dict: dict[str, str]
+    _as_dict: CaseInsensitiveDict[str]
 
-    def __init__(self, headers: dict[str, str]) -> None:
+    def __init__(self, headers: CaseInsensitiveDict[str]) -> None:
         self._server = headers["Server"]
         self._date = datetime.strptime(headers["Date"], "%a, %d %b %Y %H:%M:%S %Z")
         self._content_type = headers["Content-Type"]
@@ -40,7 +41,7 @@ class ResponseHeaders:
         self._connection = headers["Connection"]
         self._x_powered_by = headers["X-Powered-By"]
         self._access_control_allow_origin = headers["Access-Control-Allow-Origin"]
-        self._access_control_allow_headers = headers["Access-Control-Allow-Origin"]
+        self._access_control_allow_headers = headers["Access-Control-Allow-Headers"]
         self._x_ratelimit_retry_after = float(headers["x-ratelimit-retry-after"])
         self._x_ratelimit_limit = int(headers["x-ratelimit-limit"])
         self._x_ratelimit_remaining = int(headers["x-ratelimit-remaining"])
@@ -62,7 +63,7 @@ class ResponseHeaders:
         self._as_dict = headers
 
     def __str__(self) -> str:
-        return self.as_dict
+        return f"{self.as_dict}"
 
     @property
     def server(self):

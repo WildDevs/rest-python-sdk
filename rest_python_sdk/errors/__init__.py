@@ -11,5 +11,4 @@ __all__ = [
     "GatewayTimeoutError",
 ]
 
-from rest_python_sdk.errors import errors
 from rest_python_sdk.errors.errors import *

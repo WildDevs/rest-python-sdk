@@ -94,10 +94,7 @@ class RESTClient:
             method, f"{self.base_url}{endpoint}", headers=self.headers, json=payload
         )
         if r.status_code == 404:
-            resp = {
-                "code": r.status_code,
-                "note": f"{r.url} {r.reason}"
-            }
+            resp = {"code": r.status_code, "note": f"{r.url} {r.reason}"}
             raise send_error_response(resp)
         if not return_headers:
             return APIResponse(r.json())
@@ -121,10 +118,10 @@ class RESTClient:
         payload: dict[str, t.Any],
         return_headers: t.Optional[bool] = False,
     ):
-        return self._request("PUT", endpoint, payload, return_headers)
+        return self._request("PUT", endpoint, payload, return_headers=return_headers)
 
     def delete(self, endpoint: str, return_headers: t.Optional[bool] = False):
-        return self._request("DELETE", endpoint, return_headers)
+        return self._request("DELETE", endpoint, return_headers=return_headers)
 
     def validate_email(
         self, payload: dict[str, t.Any], *, return_headers: t.Optional[bool] = False
@@ -303,7 +300,7 @@ class RESTClient:
                 "batch": batch,
                 "dashes": dashes,
                 "name": name,
-                "namespace": namespace
+                "namespace": namespace,
             }
         return self.post(f"{self.random}string", payload, return_headers=return_headers)
 
