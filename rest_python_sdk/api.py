@@ -12,7 +12,7 @@ from rest_python_sdk.__version__ import __version__
 
 
 class WildDevsAPI:
-    _x_api_key: bytes
+    _x_api_key: str
     _headers: dict[str, t.Any]
     _rest: RESTClient
 
@@ -37,7 +37,7 @@ class WildDevsAPI:
         return self._x_api_key
 
     @x_api_key.setter
-    def x_api_key(self, value: bytes):
+    def x_api_key(self, value: str):
         self._x_api_key = value
 
     @property
@@ -57,6 +57,8 @@ class WildDevsAPI:
         self._rest = value
 
     def encode_api_key(self, key: str, secret: str):
-        self.x_api_key = base64.b64encode(f"{key}:{secret}".encode("ascii"))
+        self.x_api_key = base64.b64encode(f"{key}:{secret}".encode("utf-8")).decode(
+            "utf-8"
+        )
         self.headers["x-api-key"] = self.x_api_key
         self.rest.headers = self.headers
