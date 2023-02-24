@@ -473,7 +473,7 @@ class RESTClient:
 
     def create_session(self):
         self.session = aiohttp.ClientSession(headers=self.headers)
-    
+
     async def async_get(self, endpoint: str, *, return_headers: bool = False):
         r = await self.session.get(f"{self.base_url}{endpoint}")
         if not return_headers:
@@ -488,7 +488,7 @@ class RESTClient:
         return_headers: bool = False,
     ):
         async with self.session.post(f"{self.base_url}{endpoint}", json=payload) as r:
-        # r = await self.session.post(f"{self.base_url}{endpoint}", json=payload)
+            # r = await self.session.post(f"{self.base_url}{endpoint}", json=payload)
             if not return_headers:
                 return APIResponse(await r.json())
             else:
