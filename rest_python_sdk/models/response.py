@@ -6,7 +6,6 @@ __all__ = [
 
 import typing as t
 from dataclasses import dataclass
-from requests.models import CaseInsensitiveDict
 
 from rest_python_sdk.errors.errors import send_error_response
 from rest_python_sdk.models.response_headers import ResponseHeaders
@@ -24,7 +23,9 @@ class APIResponse:
     def __init__(
         self,
         data: dict[str, t.Any],
-        headers: t.Optional[CaseInsensitiveDict[str]] = None,
+        headers: t.Optional[
+            t.Union[t.MutableMapping[str, t.Any], t.Mapping[str, t.Any]]
+        ] = None,
     ) -> None:
         if data["code"] >= 400:
             raise send_error_response(data)

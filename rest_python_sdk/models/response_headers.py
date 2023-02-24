@@ -5,7 +5,7 @@ __all__ = [
 ]
 
 from datetime import datetime
-from requests.models import CaseInsensitiveDict
+import typing as t
 
 
 class ResponseHeaders:
@@ -31,9 +31,11 @@ class ResponseHeaders:
     _x_permitted_cross_domain_policies: str
     _x_robots_tag: str
     _x_xss_protection: str
-    _as_dict: CaseInsensitiveDict[str]
+    _as_dict: t.Union[t.MutableMapping[str, t.Any], t.Mapping[str, t.Any]]
 
-    def __init__(self, headers: CaseInsensitiveDict[str]) -> None:
+    def __init__(
+        self, headers: t.Union[t.MutableMapping[str, t.Any], t.Mapping[str, t.Any]]
+    ) -> None:
         self._server = headers["Server"]
         self._date = datetime.strptime(headers["Date"], "%a, %d %b %Y %H:%M:%S %Z")
         self._content_type = headers["Content-Type"]
