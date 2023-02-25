@@ -20,6 +20,7 @@ class RESTClient:
     _validate: str = "member/validate/"
     _utils: str = "public/utils/"
     _random: str = "public/random/"
+    _compile: str = "member/compile/"
     _session: aiohttp.ClientSession
 
     def __init__(self, base_url: str, timeout: int, headers: dict[str, t.Any]) -> None:
@@ -60,30 +61,6 @@ class RESTClient:
     @headers.setter
     def headers(self, value: dict[str, t.Any]):
         self._headers = value
-
-    @property
-    def validate(self):
-        return self._validate
-
-    @validate.setter
-    def validate(self, value: str):
-        self._validate = value
-
-    @property
-    def utils(self):
-        return self._utils
-
-    @utils.setter
-    def utils(self, value: str):
-        self._utils = value
-
-    @property
-    def random(self):
-        return self._random
-
-    @random.setter
-    def random(self, value: str):
-        self._random = value
 
     @property
     def session(self):
@@ -151,7 +128,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
-            f"{self.validate}email", payload, return_headers=return_headers
+            f"{self._validate}email", payload, return_headers=return_headers
         )
 
     def validate_btc(
@@ -163,7 +140,7 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}btc", payload, return_headers=return_headers)
+        return self.post(f"{self._validate}btc", payload, return_headers=return_headers)
 
     def validate_eth(
         self,
@@ -174,7 +151,7 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}eth", payload, return_headers=return_headers)
+        return self.post(f"{self._validate}eth", payload, return_headers=return_headers)
 
     def validate_bic(
         self,
@@ -185,7 +162,7 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}bic", payload, return_headers=return_headers)
+        return self.post(f"{self._validate}bic", payload, return_headers=return_headers)
 
     def validate_creditcard(
         self,
@@ -197,7 +174,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
-            f"{self.validate}creditcard", payload, return_headers=return_headers
+            f"{self._validate}creditcard", payload, return_headers=return_headers
         )
 
     def validate_ean(
@@ -209,7 +186,7 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}ean", payload, return_headers=return_headers)
+        return self.post(f"{self._validate}ean", payload, return_headers=return_headers)
 
     def validate_fqdn(
         self,
@@ -220,7 +197,9 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}fqdn", payload, return_headers=return_headers)
+        return self.post(
+            f"{self._validate}fqdn", payload, return_headers=return_headers
+        )
 
     def validate_iban(
         self,
@@ -231,7 +210,9 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}iban", payload, return_headers=return_headers)
+        return self.post(
+            f"{self._validate}iban", payload, return_headers=return_headers
+        )
 
     def validate_imei(
         self,
@@ -242,7 +223,9 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}imei", payload, return_headers=return_headers)
+        return self.post(
+            f"{self._validate}imei", payload, return_headers=return_headers
+        )
 
     def validate_ip(
         self,
@@ -253,7 +236,7 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}ip", payload, return_headers=return_headers)
+        return self.post(f"{self._validate}ip", payload, return_headers=return_headers)
 
     def validate_identitycard(
         self,
@@ -265,7 +248,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
-            f"{self.validate}identitycard", payload, return_headers=return_headers
+            f"{self._validate}identitycard", payload, return_headers=return_headers
         )
 
     def validate_isbn(
@@ -277,7 +260,9 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}isbn", payload, return_headers=return_headers)
+        return self.post(
+            f"{self._validate}isbn", payload, return_headers=return_headers
+        )
 
     def validate_isin(
         self,
@@ -288,7 +273,9 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}isin", payload, return_headers=return_headers)
+        return self.post(
+            f"{self._validate}isin", payload, return_headers=return_headers
+        )
 
     def validate_issn(
         self,
@@ -299,7 +286,9 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}issn", payload, return_headers=return_headers)
+        return self.post(
+            f"{self._validate}issn", payload, return_headers=return_headers
+        )
 
     def validate_mac(
         self,
@@ -310,7 +299,7 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}mac", payload, return_headers=return_headers)
+        return self.post(f"{self._validate}mac", payload, return_headers=return_headers)
 
     def validate_magnet(
         self,
@@ -322,7 +311,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
-            f"{self.validate}magnet", payload, return_headers=return_headers
+            f"{self._validate}magnet", payload, return_headers=return_headers
         )
 
     def validate_mimetype(
@@ -335,7 +324,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
-            f"{self.validate}mimetype", payload, return_headers=return_headers
+            f"{self._validate}mimetype", payload, return_headers=return_headers
         )
 
     def validate_password(
@@ -348,7 +337,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
-            f"{self.validate}password", payload, return_headers=return_headers
+            f"{self._validate}password", payload, return_headers=return_headers
         )
 
     def validate_uuid(
@@ -360,7 +349,9 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}uuid", payload, return_headers=return_headers)
+        return self.post(
+            f"{self._validate}uuid", payload, return_headers=return_headers
+        )
 
     def validate_tax(
         self,
@@ -371,7 +362,7 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.validate}tax", payload, return_headers=return_headers)
+        return self.post(f"{self._validate}tax", payload, return_headers=return_headers)
 
     def validate_semver(
         self,
@@ -383,7 +374,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
-            f"{self.validate}semver", payload, return_headers=return_headers
+            f"{self._validate}semver", payload, return_headers=return_headers
         )
 
     def validate_licenseplate(
@@ -396,7 +387,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
-            f"{self.validate}licenseplate", payload, return_headers=return_headers
+            f"{self._validate}licenseplate", payload, return_headers=return_headers
         )
 
     def validate_postalcode(
@@ -409,10 +400,10 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
-            f"{self.validate}postalcode", payload, return_headers=return_headers
+            f"{self._validate}postalcode", payload, return_headers=return_headers
         )
 
-    # Utils Endpoint
+    # _utils Endpoint
     def utils_encode(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
@@ -422,7 +413,7 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.utils}encode", payload, return_headers=return_headers)
+        return self.post(f"{self._utils}encode", payload, return_headers=return_headers)
 
     def utils_decode(
         self,
@@ -433,7 +424,7 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.utils}decode", payload, return_headers=return_headers)
+        return self.post(f"{self._utils}decode", payload, return_headers=return_headers)
 
     def utils_hash(
         self,
@@ -444,7 +435,7 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.utils}hash", payload, return_headers=return_headers)
+        return self.post(f"{self._utils}hash", payload, return_headers=return_headers)
 
     # Random Endpoint
     def random_string(
@@ -456,7 +447,9 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.random}string", payload, return_headers=return_headers)
+        return self.post(
+            f"{self._random}string", payload, return_headers=return_headers
+        )
 
     def random_number(
         self,
@@ -467,7 +460,9 @@ class RESTClient:
     ):
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self.random}number", payload, return_headers=return_headers)
+        return self.post(
+            f"{self._random}number", payload, return_headers=return_headers
+        )
 
     # Async HTTP methods
 
@@ -524,7 +519,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}email", payload, return_headers=return_headers
+            f"{self._validate}email", payload, return_headers=return_headers
         )
 
     async def async_validate_btc(
@@ -537,7 +532,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}btc", payload, return_headers=return_headers
+            f"{self._validate}btc", payload, return_headers=return_headers
         )
 
     async def async_validate_eth(
@@ -550,7 +545,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}eth", payload, return_headers=return_headers
+            f"{self._validate}eth", payload, return_headers=return_headers
         )
 
     async def async_validate_bic(
@@ -563,7 +558,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}bic", payload, return_headers=return_headers
+            f"{self._validate}bic", payload, return_headers=return_headers
         )
 
     async def async_validate_creditcard(
@@ -576,7 +571,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}creditcard", payload, return_headers=return_headers
+            f"{self._validate}creditcard", payload, return_headers=return_headers
         )
 
     async def async_validate_ean(
@@ -589,7 +584,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}ean", payload, return_headers=return_headers
+            f"{self._validate}ean", payload, return_headers=return_headers
         )
 
     async def async_validate_fqdn(
@@ -602,7 +597,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}fqdn", payload, return_headers=return_headers
+            f"{self._validate}fqdn", payload, return_headers=return_headers
         )
 
     async def async_validate_iban(
@@ -615,7 +610,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}iban", payload, return_headers=return_headers
+            f"{self._validate}iban", payload, return_headers=return_headers
         )
 
     async def async_validate_imei(
@@ -628,7 +623,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}imei", payload, return_headers=return_headers
+            f"{self._validate}imei", payload, return_headers=return_headers
         )
 
     async def async_validate_ip(
@@ -641,7 +636,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}ip", payload, return_headers=return_headers
+            f"{self._validate}ip", payload, return_headers=return_headers
         )
 
     async def async_validate_identitycard(
@@ -654,7 +649,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}identitycard", payload, return_headers=return_headers
+            f"{self._validate}identitycard", payload, return_headers=return_headers
         )
 
     async def async_validate_isbn(
@@ -667,7 +662,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}isbn", payload, return_headers=return_headers
+            f"{self._validate}isbn", payload, return_headers=return_headers
         )
 
     async def async_validate_isin(
@@ -680,7 +675,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}isin", payload, return_headers=return_headers
+            f"{self._validate}isin", payload, return_headers=return_headers
         )
 
     async def async_validate_issn(
@@ -693,7 +688,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}issn", payload, return_headers=return_headers
+            f"{self._validate}issn", payload, return_headers=return_headers
         )
 
     async def async_validate_mac(
@@ -706,7 +701,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}mac", payload, return_headers=return_headers
+            f"{self._validate}mac", payload, return_headers=return_headers
         )
 
     async def async_validate_magnet(
@@ -719,7 +714,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}magnet", payload, return_headers=return_headers
+            f"{self._validate}magnet", payload, return_headers=return_headers
         )
 
     async def async_validate_mimetype(
@@ -732,7 +727,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}mimetype", payload, return_headers=return_headers
+            f"{self._validate}mimetype", payload, return_headers=return_headers
         )
 
     async def async_validate_password(
@@ -745,7 +740,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}password", payload, return_headers=return_headers
+            f"{self._validate}password", payload, return_headers=return_headers
         )
 
     async def async_validate_uuid(
@@ -758,7 +753,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}uuid", payload, return_headers=return_headers
+            f"{self._validate}uuid", payload, return_headers=return_headers
         )
 
     async def async_validate_tax(
@@ -771,7 +766,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}tax", payload, return_headers=return_headers
+            f"{self._validate}tax", payload, return_headers=return_headers
         )
 
     async def async_validate_semver(
@@ -784,7 +779,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}semver", payload, return_headers=return_headers
+            f"{self._validate}semver", payload, return_headers=return_headers
         )
 
     async def async_validate_licenseplate(
@@ -797,7 +792,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}licenseplate", payload, return_headers=return_headers
+            f"{self._validate}licenseplate", payload, return_headers=return_headers
         )
 
     async def async_validate_postalcode(
@@ -810,7 +805,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.validate}postalcode", payload, return_headers=return_headers
+            f"{self._validate}postalcode", payload, return_headers=return_headers
         )
 
     # Async Utils Endpoint
@@ -824,7 +819,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.utils}encode", payload, return_headers=return_headers
+            f"{self._utils}encode", payload, return_headers=return_headers
         )
 
     async def async_utils_decode(
@@ -837,7 +832,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.utils}decode", payload, return_headers=return_headers
+            f"{self._utils}decode", payload, return_headers=return_headers
         )
 
     async def async_utils_hash(
@@ -850,7 +845,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.utils}hash", payload, return_headers=return_headers
+            f"{self._utils}hash", payload, return_headers=return_headers
         )
 
     # Async Random Endpoint
@@ -864,7 +859,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.random}string", payload, return_headers=return_headers
+            f"{self._random}string", payload, return_headers=return_headers
         )
 
     async def async_random_number(
@@ -877,5 +872,30 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self.random}number", payload, return_headers=return_headers
+            f"{self._random}number", payload, return_headers=return_headers
+        )
+
+    # Compile Endpoint
+    def compile(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
+    ):
+        if not payload:
+            payload = self._build_payload(kwargs)
+        return self.post(f"{self._compile}", payload, return_headers=return_headers)
+
+    async def async_compile(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
+    ):
+        if not payload:
+            payload = self._build_payload(kwargs)
+        return await self.async_post(
+            f"{self._compile}", payload, return_headers=return_headers
         )
