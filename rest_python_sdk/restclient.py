@@ -469,12 +469,26 @@ class RESTClient:
     def create_session(self):
         self.session = aiohttp.ClientSession(headers=self.headers)
 
+    async def _async_request(
+        self,
+        method: str,
+        endpoint: str,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        return_headers: bool = False,
+    ):
+        async with self.session.request(
+            method, f"{self.base_url}{endpoint}", json=payload
+        ) as r:
+            if r.status == 404:
+                resp = {"code": r.status, "note": f"{r.url} {r.reason}"}
+                raise send_error_response(resp)
+            if not return_headers:
+                return APIResponse(await r.json())
+            else:
+                return APIResponse(await r.json(), r.headers)
+
     async def async_get(self, endpoint: str, *, return_headers: bool = False):
-        r = await self.session.get(f"{self.base_url}{endpoint}")
-        if not return_headers:
-            return APIResponse(await r.json())
-        else:
-            return APIResponse(await r.json(), r.headers)
+        return await self._async_request("GET", endpoint, return_headers=return_headers)
 
     async def async_post(
         self,
@@ -482,12 +496,9 @@ class RESTClient:
         payload: dict[str, t.Any],
         return_headers: bool = False,
     ):
-        async with self.session.post(f"{self.base_url}{endpoint}", json=payload) as r:
-            # r = await self.session.post(f"{self.base_url}{endpoint}", json=payload)
-            if not return_headers:
-                return APIResponse(await r.json())
-            else:
-                return APIResponse(await r.json(), r.headers)
+        return await self._async_request(
+            "POST", endpoint, payload, return_headers=return_headers
+        )
 
     async def async_put(
         self,
@@ -495,18 +506,14 @@ class RESTClient:
         payload: dict[str, t.Any],
         return_headers: bool = False,
     ):
-        r = await self.session.put(f"{self.base_url}{endpoint}", data=payload)
-        if not return_headers:
-            return APIResponse(await r.json())
-        else:
-            return APIResponse(await r.json(), r.headers)
+        return await self._async_request(
+            "PUT", endpoint, payload, return_headers=return_headers
+        )
 
     async def async_delete(self, endpoint: str, return_headers: bool = False):
-        r = await self.session.delete(f"{self.base_url}{endpoint}")
-        if not return_headers:
-            return APIResponse(await r.json())
-        else:
-            return APIResponse(await r.json(), r.headers)
+        return await self._async_request(
+            "DELETE", endpoint, return_headers=return_headers
+        )
 
     # Validate Endpoint
     async def async_validate_email(
