@@ -5,6 +5,7 @@ __all__ = [
 ]
 
 import typing as t
+import base64
 
 import requests
 import aiohttp
@@ -21,6 +22,8 @@ class RESTClient:
     _utils: str = "public/utils/"
     _random: str = "public/random/"
     _compile: str = "member/compile/"
+    _qrcode: str = "member/qrcode/"
+    _geoip: str = "member/geoip/"
     _session: aiohttp.ClientSession
 
     def __init__(self, base_url: str, timeout: int, headers: dict[str, t.Any]) -> None:
@@ -906,3 +909,54 @@ class RESTClient:
         return await self.async_post(
             f"{self._compile}", payload, return_headers=return_headers
         )
+
+    # Member Utils Endpoint
+    def geoip(self, ip: str, *, return_headers: bool = False):
+        return self.get(f"{self._geoip}{ip}", return_headers=return_headers)
+
+    async def async_geoip(self, ip: str, *, return_headers: bool = False):
+        return await self.async_get(f"{self._geoip}{ip}", return_headers=return_headers)
+
+    def qrcode(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        create_img: bool = False,
+        file_path: str = "./",
+        return_headers: bool = False,
+        **kwargs: t.Any,
+    ):
+        if not payload:
+            payload = self._build_payload(kwargs)
+        if not create_img:
+            return self.post(f"{self._qrcode}", payload, return_headers=return_headers)
+        else:
+            data = self.post(f"{self._qrcode}", payload, return_headers=return_headers)
+            code = data.data[21:]
+            qr = base64.b64decode(code)
+            with open(f"{file_path}qrcode.png", "wb") as f:
+                f.write(qr)
+
+    async def async_qrcode(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        create_img: bool = False,
+        file_path: str = "./",
+        **kwargs: t.Any,
+    ):
+        if not payload:
+            payload = self._build_payload(kwargs)
+        if not create_img:
+            return await self.async_post(
+                f"{self._qrcode}", payload, return_headers=return_headers
+            )
+        else:
+            data = await self.async_post(
+                f"{self._qrcode}", payload, return_headers=return_headers
+            )
+            code = data.data[21:]
+            qr = base64.b64decode(code)
+            with open(f"{file_path}qrcode.png", "wb") as f:
+                f.write(qr)
