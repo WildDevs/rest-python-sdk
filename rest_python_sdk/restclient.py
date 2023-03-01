@@ -192,6 +192,16 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+                \temail (`str`): REQUIRED\n
+                \tallow_display_name (`bool`): \n
+                \trequire_display_name (`bool`):\n
+                \tallow_utf8_local_part (`bool`):\n
+                \tallow_ip_domain	(`bool`):\n
+                \tdomain_specific_validation (`bool`):\n
+                \tblacklisted_chrs (`str`): \n
+                \thost_blacklist (`list`[`str`]):\n
+                \thost_whitelist (`list`[`str`]):\n
+                \tmx (`bool`):\n
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -218,6 +228,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \taddress (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -242,6 +253,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \taddress (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -266,6 +278,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tbic (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -290,6 +303,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tnumber (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -316,6 +330,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tean (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -340,6 +355,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tfqdn (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -366,6 +382,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \taddress (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -392,6 +409,8 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \timei (`str`): REQUIRED\n
+            \tallow_hyphens (`bool`):
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -418,6 +437,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tip (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -442,6 +462,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tidentity (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -468,6 +489,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tisbn (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -494,6 +516,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tisin (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -520,6 +543,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tissn (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -546,6 +570,8 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \taddress (`str`): REQUIRED\n
+            \tno_separators (`bool`):
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -570,6 +596,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tmagnet (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -596,6 +623,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tmimetype (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -622,6 +650,19 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tpassword (`str`): REQUIRED\n
+            \tminLength	(`int`):\n
+            \tminLowercase (`int`):\n
+            \tminUppercase (`int`):\n
+            \tminNumbers (`int`):\n
+            \tminSymbols (`int`):\n
+            \treturnScore (`bool`):\n
+            \tpointsPerUnique	(`int`):\n
+            \tpointsPerRepeat	(`int`):\n
+            \tpointsForContainingLower	(`int`):\n
+            \tpointsForContainingUpper	(`int`):\n
+            \tpointsForContainingNumber	(`int`):\n
+            \tpointsForContainingSymbol	(`int`):\n
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -648,6 +689,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tuuid (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -674,6 +716,8 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \ttax (`str`): REQUIRED\n
+            \tlocale (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -698,6 +742,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tsemver (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -724,6 +769,8 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tlicenseplate (`str`): REQUIRED\n
+            \tlocale (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -750,6 +797,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tpostalcode (`str`): REQUIRED\n
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -999,6 +1047,16 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+                \temail (`str`): REQUIRED\n
+                \tallow_display_name (`bool`): \n
+                \trequire_display_name (`bool`):\n
+                \tallow_utf8_local_part (`bool`):\n
+                \tallow_ip_domain	(`bool`):\n
+                \tdomain_specific_validation (`bool`):\n
+                \tblacklisted_chrs (`str`): \n
+                \thost_blacklist (`list`[`str`]):\n
+                \thost_whitelist (`list`[`str`]):\n
+                \tmx (`bool`):\n
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1025,6 +1083,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \taddress (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1051,6 +1110,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \taddress (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1077,6 +1137,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tbic (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1103,6 +1164,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tnumber (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1129,6 +1191,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tean (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1155,6 +1218,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tfqdn (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1181,6 +1245,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tiban (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1207,6 +1272,8 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \timei (`str`): REQUIRED\n
+            \tallow_hyphens (`bool`): 
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1233,6 +1300,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tip (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1259,6 +1327,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tidentity (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1285,6 +1354,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tisbn (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1311,6 +1381,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tisin (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1337,6 +1408,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tissn (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1363,6 +1435,8 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \taddress (`str`): REQUIRED\n
+            \tno_separators (`str`): 
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1389,6 +1463,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tmagnet (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1415,6 +1490,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tmimetype (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1441,7 +1517,19 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
-
+            \tpassword (`str`): REQUIRED\n
+            \tminLength	(`int`):\n
+            \tminLowercase (`int`):\n
+            \tminUppercase (`int`):\n
+            \tminNumbers (`int`):\n
+            \tminSymbols (`int`):\n
+            \treturnScore (`bool`):\n
+            \tpointsPerUnique	(`int`):\n
+            \tpointsPerRepeat	(`int`):\n
+            \tpointsForContainingLower	(`int`):\n
+            \tpointsForContainingUpper	(`int`):\n
+            \tpointsForContainingNumber	(`int`):\n
+            \tpointsForContainingSymbol	(`int`):\n
         Returns:
             `APIResponse`: The object created from the response.
         """
@@ -1467,6 +1555,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tuuid (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1493,7 +1582,8 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
-
+            \ttax (`str`): REQUIRED\n
+            \tlocale (`str`): REQUIRED
         Returns:
             `APIResponse`: The object created from the response.
         """
@@ -1519,6 +1609,7 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tsemver (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1545,6 +1636,8 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+            \tlicenseplate (`str`): REQUIRED\n
+            \tlocale (`str`): REQUIRED
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -1571,7 +1664,8 @@ class RESTClient:
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
-
+            \tpostalcode (`str`): REQUIRED
+            
         Returns:
             `APIResponse`: The object created from the response.
         """
