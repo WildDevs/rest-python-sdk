@@ -17,10 +17,18 @@ import typing as t
 
 
 class WildDevsError(Exception):
+    """
+    Base error class of the WildDevsAPI Wrapper. All errors raised by the WildDevsAPI module will be a subclass of this exception.
+    """
+
     pass
 
 
 class BadRequestError(WildDevsError):
+    """
+    Error raised when an API request returns code 400.
+    """
+
     def __init__(
         self,
         error: str,
@@ -32,36 +40,64 @@ class BadRequestError(WildDevsError):
 
 
 class UnauthorizedError(WildDevsError):
+    """
+    Error raised when an API request returns code 401.
+    """
+
     def __init__(self, error: str) -> None:
         super().__init__(error)
 
 
 class ForbiddenError(WildDevsError):
+    """
+    Error raised when an API request returns code 403.
+    """
+
     def __init__(self, error: str) -> None:
         super().__init__(error)
 
 
 class NotFoundError(WildDevsError):
+    """
+    Error raised when an API request returns code 404.
+    """
+
     def __init__(self, error: str) -> None:
         super().__init__(error)
 
 
 class InternalServerError(WildDevsError):
+    """
+    Error raised when an API request returns code 500.
+    """
+
     def __init__(self, error: str) -> None:
         super().__init__(error)
 
 
 class BadGatewayError(WildDevsError):
+    """
+    Error raised when an API request returns code 502.
+    """
+
     def __init__(self, error: str) -> None:
         super().__init__(error)
 
 
 class ServiceUnavailableError(WildDevsError):
+    """
+    Error raised when an API request returns code 503.
+    """
+
     def __init__(self, error: str) -> None:
         super().__init__(error)
 
 
 class GatewayTimeoutError(WildDevsError):
+    """
+    Error raised when an API request returns code 504.
+    """
+
     def __init__(self, error: str) -> None:
         super().__init__(error)
 
@@ -75,10 +111,10 @@ def send_error_response(data: dict[str, t.Any]):
         if missing_fields := data.get("missingFields"):
             return BadRequestError(error, missing_fields=missing_fields)
         return BadRequestError(error)
-    return error_dict[code](error)
+    return _error_dict[code](error)
 
 
-error_dict: dict[int, type[WildDevsError]] = {
+_error_dict: dict[int, type[WildDevsError]] = {
     401: UnauthorizedError,
     403: ForbiddenError,
     404: NotFoundError,

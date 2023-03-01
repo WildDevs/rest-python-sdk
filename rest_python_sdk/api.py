@@ -12,6 +12,10 @@ from rest_python_sdk.__version__ import __version__
 
 
 class WildDevsAPI:
+    """
+    Base class of the WildDevsAPI wrapper. Includes a `RESTClient` with all endpoint methods.
+    """
+
     _x_api_key: str
     _headers: dict[str, t.Any]
     _rest: RESTClient
@@ -34,6 +38,7 @@ class WildDevsAPI:
 
     @property
     def x_api_key(self):
+        """The api-key used for member/subscriber endpoint requests."""
         return self._x_api_key
 
     @x_api_key.setter
@@ -42,6 +47,7 @@ class WildDevsAPI:
 
     @property
     def headers(self):
+        """The request headers of the API. More headers can be added manually."""
         return self._headers
 
     @headers.setter
@@ -50,6 +56,7 @@ class WildDevsAPI:
 
     @property
     def rest(self):
+        """The `RESTClient` of the API."""
         return self._rest
 
     @rest.setter
@@ -57,6 +64,13 @@ class WildDevsAPI:
         self._rest = value
 
     def encode_api_key(self, key: str, secret: str):
+        """
+        Method to turn the api-key and secret into base64 and add it to the headers. This is required to be able to use the member/subscriber endpoints.
+
+        Args:
+            key (`str`): The API key generated on https://wild-devs.net/account/keys. Always starts with `WD-`.
+            secret (`str`): The secret generated besides the API key.
+        """
         self.x_api_key = base64.b64encode(f"{key}:{secret}".encode("utf-8")).decode(
             "utf-8"
         )

@@ -13,6 +13,10 @@ from rest_python_sdk.models.response_headers import ResponseHeaders
 
 @dataclass
 class APIResponse:
+    """
+    Class representation of the API response.
+    """
+
     _status: str
     _code: int
     _message: str
@@ -44,6 +48,7 @@ class APIResponse:
 
     @property
     def status(self):
+        """The status of the response."""
         return self._status
 
     @status.setter
@@ -52,6 +57,7 @@ class APIResponse:
 
     @property
     def code(self):
+        """The status code of the response."""
         return self._code
 
     @code.setter
@@ -60,6 +66,7 @@ class APIResponse:
 
     @property
     def message(self):
+        """The message of the response"""
         return self._message
 
     @message.setter
@@ -68,6 +75,7 @@ class APIResponse:
 
     @property
     def data(self):
+        """The content of the response."""
         return self._data
 
     @data.setter
@@ -76,6 +84,7 @@ class APIResponse:
 
     @property
     def headers(self):
+        """The `ResponseHeaders` of the response. Will only be present if `return_headers=True` in the request method."""
         return self._headers
 
     @headers.setter
@@ -84,6 +93,7 @@ class APIResponse:
 
     @property
     def as_dict(self):
+        """Dictionary representation of the response data. Will be a dictionary of dictionaries if `return_headers=True` in the request method."""
         return self._as_dict
 
     @as_dict.setter

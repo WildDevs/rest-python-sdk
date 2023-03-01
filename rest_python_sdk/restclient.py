@@ -15,6 +15,10 @@ from rest_python_sdk.errors.errors import send_error_response
 
 
 class RESTClient:
+    """
+    The RestClient containing all endpoint methods. Implements sync and async variants.
+    """
+
     _base_url: str
     _timeout: int
     _headers: dict[str, t.Any]
@@ -36,6 +40,7 @@ class RESTClient:
 
     @property
     def base_url(self):
+        """The baseURL for all requests. Default is https://api.wild-devs.net/v1/."""
         return self._base_url
 
     @base_url.setter
@@ -48,6 +53,7 @@ class RESTClient:
 
     @property
     def timeout(self):
+        """The amount of time to wait for a response, when a request has been made. Default is 30. Can be set between 5 and 30."""
         return self._timeout
 
     @timeout.setter
@@ -59,6 +65,7 @@ class RESTClient:
 
     @property
     def headers(self):
+        """The request headers of the API. More headers can be added manually."""
         return self._headers
 
     @headers.setter
@@ -67,6 +74,7 @@ class RESTClient:
 
     @property
     def session(self):
+        """The clientsession used for async requests. Has to be created using `create_session()`."""
         return self._session
 
     @session.setter
@@ -74,6 +82,12 @@ class RESTClient:
         self._session = value
 
     def _build_payload(self, kwargs: dict[str, t.Any]) -> dict[str, t.Any]:
+        """
+        Helper method to create a payload from passed `**kwargs` if no payload has been supplied.
+
+        Args:
+            kwargs (`dict[str, t.Any]`): The `**kwargs` passed to an endpoint method.
+        """
         payload: dict[str, t.Any] = {}
         for k in kwargs:
             payload[k] = kwargs[k]
@@ -98,7 +112,17 @@ class RESTClient:
         else:
             return APIResponse(r.json(), r.headers)
 
-    def get(self, endpoint: str, *, return_headers: bool = False):
+    def get(self, endpoint: str, return_headers: bool = False):
+        """
+        Synchronous GET request.
+
+        Args:
+            endpoint (`str`): The endpoint to send the request to.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         return self._request("GET", endpoint, return_headers=return_headers)
 
     def post(
@@ -107,6 +131,17 @@ class RESTClient:
         payload: dict[str, t.Any],
         return_headers: bool = False,
     ):
+        """
+        Synchronous POST request.
+
+        Args:
+            endpoint (`str`): The endpoint to send the request to.
+            payload (`dict`[`str`, `Any`]): The payload to send to the endpoint.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         return self._request("POST", endpoint, payload, return_headers=return_headers)
 
     def put(
@@ -115,12 +150,32 @@ class RESTClient:
         payload: dict[str, t.Any],
         return_headers: bool = False,
     ):
+        """
+        Synchronous PUT request.
+
+        Args:
+            endpoint (`str`): The endpoint to send the request to.
+            payload (`dict`[`str`, `Any`]): The payload to send to the endpoint.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         return self._request("PUT", endpoint, payload, return_headers=return_headers)
 
     def delete(self, endpoint: str, return_headers: bool = False):
+        """
+        Synchronous DELETE request.
+
+        Args:
+            endpoint (`str`): The endpoint to send the request to.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         return self._request("DELETE", endpoint, return_headers=return_headers)
 
-    # Validate Endpoint
     def validate_email(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
@@ -128,6 +183,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/email.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -141,6 +209,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/btc.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._validate}btc", payload, return_headers=return_headers)
@@ -152,6 +233,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/eth.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._validate}eth", payload, return_headers=return_headers)
@@ -163,6 +257,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/bic.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._validate}bic", payload, return_headers=return_headers)
@@ -174,6 +281,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/creditcard.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -187,6 +307,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/ean.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._validate}ean", payload, return_headers=return_headers)
@@ -198,6 +331,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/fqdn.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -211,6 +357,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/iban.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -224,6 +383,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/imei.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -237,6 +409,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/ip.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._validate}ip", payload, return_headers=return_headers)
@@ -248,6 +433,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/identitycard.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -261,6 +459,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/isbn.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -274,6 +485,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/isin.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -287,6 +511,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/issn.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -300,6 +537,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/mac.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._validate}mac", payload, return_headers=return_headers)
@@ -311,6 +561,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/magnet.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -324,6 +587,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/mimetype.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -337,6 +613,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/password.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -350,6 +639,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/uuid.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -363,6 +665,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/tax.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._validate}tax", payload, return_headers=return_headers)
@@ -374,6 +689,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/semver.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -387,6 +715,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/licenseplate.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -400,13 +741,25 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/validate/postalcode.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
             f"{self._validate}postalcode", payload, return_headers=return_headers
         )
 
-    # _utils Endpoint
     def utils_encode(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
@@ -414,6 +767,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/utils/encode.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._utils}encode", payload, return_headers=return_headers)
@@ -425,6 +791,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/utils/decode.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._utils}decode", payload, return_headers=return_headers)
@@ -436,11 +815,23 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/utils/hash.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._utils}hash", payload, return_headers=return_headers)
 
-    # Random Endpoint
     def random_string(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
@@ -448,6 +839,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/public/random/string.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -461,6 +865,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/public/random/number.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(
@@ -470,6 +887,12 @@ class RESTClient:
     # Async HTTP methods
 
     def create_session(self):
+        """
+        Method to create a `ClientSession` for asynchronous requests.
+
+        Returns:
+            `ClientSession`: The client session needed to make asynchronous requests.
+        """
         self.session = aiohttp.ClientSession(headers=self.headers)
 
     async def _async_request(
@@ -491,6 +914,16 @@ class RESTClient:
                 return APIResponse(await r.json(), r.headers)
 
     async def async_get(self, endpoint: str, *, return_headers: bool = False):
+        """
+        Asynchronous GET request.
+
+        Args:
+            endpoint (`str`): The endpoint to send the request to.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         return await self._async_request("GET", endpoint, return_headers=return_headers)
 
     async def async_post(
@@ -499,6 +932,17 @@ class RESTClient:
         payload: dict[str, t.Any],
         return_headers: bool = False,
     ):
+        """
+        Asynchronous POST request.
+
+        Args:
+            endpoint (`str`): The endpoint to send the request to.
+            payload (`dict`[`str`, `Any`]): The payload to send to the endpoint.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         return await self._async_request(
             "POST", endpoint, payload, return_headers=return_headers
         )
@@ -509,16 +953,36 @@ class RESTClient:
         payload: dict[str, t.Any],
         return_headers: bool = False,
     ):
+        """
+        Asynchronous PUT request.
+
+        Args:
+            endpoint (`str`): The endpoint to send the request to.
+            payload (`dict`[`str`, `Any`]): The payload to send to the endpoint.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         return await self._async_request(
             "PUT", endpoint, payload, return_headers=return_headers
         )
 
     async def async_delete(self, endpoint: str, return_headers: bool = False):
+        """
+        Asynchronous DELETE request.
+
+        Args:
+            endpoint (`str`): The endpoint to send the request to.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         return await self._async_request(
             "DELETE", endpoint, return_headers=return_headers
         )
 
-    # Validate Endpoint
     async def async_validate_email(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
@@ -526,6 +990,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/email.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -539,6 +1016,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/btc.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -552,6 +1042,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/eth.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -565,6 +1068,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/bic.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -578,6 +1094,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/creditcard.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -591,6 +1120,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/ean.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -604,6 +1146,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/fqdn.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -617,6 +1172,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/iban.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -630,6 +1198,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/imei.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -643,6 +1224,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/ip.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -656,6 +1250,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/identitycard.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -669,6 +1276,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/isbn.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -682,6 +1302,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/isin.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -695,6 +1328,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/issn.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -708,6 +1354,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/mac.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -721,6 +1380,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/magnet.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -734,6 +1406,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/mimetype.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -747,6 +1432,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/password.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -760,6 +1458,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/uuid.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -773,6 +1484,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/tax.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -786,6 +1510,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/semver.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -799,6 +1536,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/licenseplate.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -812,13 +1562,25 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/validate/postalcode.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
             f"{self._validate}postalcode", payload, return_headers=return_headers
         )
 
-    # Async Utils Endpoint
     async def async_utils_encode(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
@@ -826,6 +1588,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/utils/encode.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -839,6 +1614,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/utils/decode.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -852,6 +1640,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/utils/hash.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -866,6 +1667,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/public/random/string.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -879,6 +1693,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/public/random/number.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
@@ -893,6 +1720,19 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/compile.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return self.post(f"{self._compile}", payload, return_headers=return_headers)
@@ -904,17 +1744,55 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/compile.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
             f"{self._compile}", payload, return_headers=return_headers
         )
 
-    # Member Utils Endpoint
     def geoip(self, ip: str, *, return_headers: bool = False):
+        """
+        Method to send a synchronous GET request to https://api.wild-devs.net/v1/member/geoip/{ip}.
+
+        Args:
+            ip (`str`): The IPv4/IPv6 address to check.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         return self.get(f"{self._geoip}{ip}", return_headers=return_headers)
 
     async def async_geoip(self, ip: str, *, return_headers: bool = False):
+        """
+        Method to send an asynchronous GET request to https://api.wild-devs.net/v1/member/geoip/{ip}.
+
+        Args:
+            ip (`str`): The IPv4/IPv6 address to check.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         return await self.async_get(f"{self._geoip}{ip}", return_headers=return_headers)
 
     def qrcode(
@@ -926,6 +1804,21 @@ class RESTClient:
         return_headers: bool = False,
         **kwargs: t.Any,
     ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/member/qrcode.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is `False`.
+            file_path (`str`): The filepath where the .png will be created. Default is the current directory.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         if not create_img:
@@ -936,6 +1829,7 @@ class RESTClient:
             qr = base64.b64decode(code)
             with open(f"{file_path}qrcode.png", "wb") as f:
                 f.write(qr)
+            return data
 
     async def async_qrcode(
         self,
@@ -946,6 +1840,21 @@ class RESTClient:
         file_path: str = "./",
         **kwargs: t.Any,
     ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/member/qrcode.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is `False`.
+            file_path (`str`): The filepath where the .png will be created. Default is the current directory.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
         if not payload:
             payload = self._build_payload(kwargs)
         if not create_img:
@@ -960,3 +1869,4 @@ class RESTClient:
             qr = base64.b64decode(code)
             with open(f"{file_path}qrcode.png", "wb") as f:
                 f.write(qr)
+            return data
