@@ -23,11 +23,15 @@ class RESTClient:
     _timeout: int
     _headers: dict[str, t.Any]
     _validate: str = "member/validate/"
-    _utils: str = "public/utils/"
+    _public_utils: str = "public/utils/"
+    _member_utils: str = "member/utils/"
     _random: str = "public/random/"
-    _compile: str = "member/compile/"
+    _compile: str = "subscriber/compiler/"
     _qrcode: str = "member/qrcode/"
     _geoip: str = "member/geoip/"
+    _ai: str = "subscriber/ai/"
+    _conversion: str = "subscriber/convert/"
+    _games: str = "subscriber/games/"
     _session: aiohttp.ClientSession
 
     def __init__(self, base_url: str, timeout: int, headers: dict[str, t.Any]) -> None:
@@ -830,7 +834,7 @@ class RESTClient:
         """
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self._utils}encode", payload, return_headers=return_headers)
+        return self.post(f"{self._public_utils}encode", payload, return_headers=return_headers)
 
     def utils_decode(
         self,
@@ -854,7 +858,7 @@ class RESTClient:
         """
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self._utils}decode", payload, return_headers=return_headers)
+        return self.post(f"{self._public_utils}decode", payload, return_headers=return_headers)
 
     def utils_hash(
         self,
@@ -878,7 +882,7 @@ class RESTClient:
         """
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self._utils}hash", payload, return_headers=return_headers)
+        return self.post(f"{self._public_utils}hash", payload, return_headers=return_headers)
 
     def random_string(
         self,
@@ -1675,7 +1679,7 @@ class RESTClient:
             f"{self._validate}postalcode", payload, return_headers=return_headers
         )
 
-    async def async_utils_encode(
+    async def async_public_utils_encode(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -1698,10 +1702,10 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self._utils}encode", payload, return_headers=return_headers
+            f"{self._public_utils}encode", payload, return_headers=return_headers
         )
 
-    async def async_utils_decode(
+    async def async_public_utils_decode(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -1724,10 +1728,10 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self._utils}decode", payload, return_headers=return_headers
+            f"{self._public_utils}decode", payload, return_headers=return_headers
         )
 
-    async def async_utils_hash(
+    async def async_public_utils_hash(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -1750,7 +1754,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self._utils}hash", payload, return_headers=return_headers
+            f"{self._public_utils}hash", payload, return_headers=return_headers
         )
 
     # Async Random Endpoint
@@ -1829,7 +1833,7 @@ class RESTClient:
         """
         if not payload:
             payload = self._build_payload(kwargs)
-        return self.post(f"{self._compile}", payload, return_headers=return_headers)
+        return self.post(f"{self._compile}compile", payload, return_headers=return_headers)
 
     async def async_compile(
         self,
@@ -1854,7 +1858,7 @@ class RESTClient:
         if not payload:
             payload = self._build_payload(kwargs)
         return await self.async_post(
-            f"{self._compile}", payload, return_headers=return_headers
+            f"{self._compile}compile", payload, return_headers=return_headers
         )
 
     def geoip(self, ip: str, *, return_headers: bool = False):
@@ -1964,3 +1968,180 @@ class RESTClient:
             with open(f"{file_path}qrcode.png", "wb") as f:
                 f.write(qr)
             return data
+
+    def random_quote(
+            self,
+            *,
+            return_headers: bool = False):
+        """
+        Method to send a synchronous GET request to https://api.wild-devs.net/v1/public/random/quote.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        return self.get(f"{self._random}quote", return_headers=return_headers)
+    
+    async def async_random_quote(self, *, return_headers: bool = False):
+        """
+        Method to send an asynchronous GET request to https://api.wild-devs.net/v1/public/random/quote.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        return await self.async_get(f"{self._random}quote", return_headers=return_headers)
+
+    def url_shortener_p(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
+    ):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/public/utils/urlshortener.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not payload:
+            payload = self._build_payload(kwargs)
+        return self.post(
+            f"{self._public_utils}urlshortener", payload, return_headers=return_headers
+        )
+
+    async def async_url_shortener_p(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
+    ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/public/utils/urlshortener.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not payload:
+            payload = self._build_payload(kwargs)
+        return await self.async_post(
+            f"{self._public_utils}urlshortener", payload, return_headers=return_headers
+        )
+
+    def url_shorteners(
+            self,
+            *,
+            return_headers: bool = False):
+        """
+        Method to send a synchronous GET request to https://api.wild-devs.net/v1/member/utils/urlshorteners.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        return self.get(f"{self._member_utils}urlshorteners", return_headers=return_headers)
+    
+    async def async_url_shorteners(self, *, return_headers: bool = False):
+        """
+        Method to send an asynchronous GET request to https://api.wild-devs.net/v1/member/utils/urlshorteners.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        return await self.async_get(f"{self._member_utils}urlshorteners", return_headers=return_headers)
+    
+    def url_shortener_m(
+            self,
+            payload: t.Optional[dict[str, t.Any]] = None,
+            *,
+            return_headers: bool = False,
+            **kwargs: t.Any):
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/public/utils/urlshortener.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not payload:
+            payload = self._build_payload(kwargs)
+        return self.post(
+            f"{self._member_utils}urlshortener", payload, return_headers=return_headers
+        )
+
+    async def async_url_shortener_m(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
+    ):
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/public/utils/urlshortener.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not payload:
+            payload = self._build_payload(kwargs)
+        return await self.async_post(
+            f"{self._member_utils}urlshortener", payload, return_headers=return_headers
+        )
+    
+    def delete_url_shortener(
+            self,
+            url: str,
+            *,
+            return_headers: bool = False):
+        """
+        Method to send a synchronous DELETE request to https://api.wild-devs.net/v1/member/utils/urlshortener{id}.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        return self.delete(f"{self._member_utils}urlshortener/{url}", return_headers=return_headers)
+    
+    async def async_delete_url_shortener(self, url: str ,*, return_headers: bool = False):
+        """
+        Method to send an asynchronous DELETE request to https://api.wild-devs.net/v1/member/utils/urlshortener{id}.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        return await self.async_delete(f"{self._member_utils}urlshortener/{url}", return_headers=return_headers)
