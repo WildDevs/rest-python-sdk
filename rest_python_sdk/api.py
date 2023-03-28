@@ -15,8 +15,8 @@ from rest_python_sdk.endpoints.games import Games
 from rest_python_sdk.endpoints.mockup import Mockup
 from rest_python_sdk.endpoints.random import Random
 from rest_python_sdk.endpoints.urlshortener import UrlShortener
-from rest_python_sdk.endpoints.utility import Utility 
-from rest_python_sdk.endpoints.validation import Validation 
+from rest_python_sdk.endpoints.utility import Utility
+from rest_python_sdk.endpoints.validation import Validation
 from rest_python_sdk.__version__ import __version__
 
 
@@ -80,32 +80,32 @@ class WildDevsAPI:
     def session(self) -> aiohttp.ClientSession:
         """The `ClientSession` used for async requests. Has to be created using `create_session()`."""
         return self._session
-    
+
     @property
     def conversion(self) -> Conversion:
         """The class containing conversion related endpoint methods."""
         return self._conversion
-    
+
     @property
     def games(self) -> Games:
         """The class containing game related endpoint methods."""
         return self._games
-    
+
     @property
     def mockup(self) -> Mockup:
         """The class containing mockup related endpoint methods."""
         return self._mockup
-    
+
     @property
     def random(self) -> Random:
         """The class containing random related endpoint methods."""
         return self._random
-    
+
     @property
     def urlshortener(self) -> UrlShortener:
         """The class containing urlshortener related endpoint methods."""
         return self._urlshortener
-    
+
     @property
     def validation(self) -> Validation:
         """The class containing validation related endpoint methods."""

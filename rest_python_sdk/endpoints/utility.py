@@ -10,11 +10,13 @@ import base64
 from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
+
 class Utility:
     """
     The endpoint class for utility related endpoints.
     Contains sync and async variants of the endpoint methods.
     """
+
     _rest: RESTClient
 
     def __init__(self, rest: RESTClient) -> None:
@@ -23,7 +25,7 @@ class Utility:
     @property
     def rest(self) -> RESTClient:
         return self._rest
-    
+
     # Synchronous Methods
 
     def compile(
@@ -144,8 +146,10 @@ class Utility:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(f"{self.rest.base_url}hash", payload, return_headers=return_headers)
-    
+        return self.rest.post(
+            f"{self.rest.base_url}hash", payload, return_headers=return_headers
+        )
+
     def qrcode(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
@@ -185,7 +189,7 @@ class Utility:
             with open(f"{file_path}qrcode.png", "wb") as f:
                 f.write(qr)
             return data
-        
+
     # Asynchronous Methods
 
     async def async_compile(
@@ -266,7 +270,9 @@ class Utility:
             f"{self.rest.base_url}encode", payload, return_headers=return_headers
         )
 
-    async def async_geoip(self, ip: str, *, return_headers: bool = False) -> APIResponse:
+    async def async_geoip(
+        self, ip: str, *, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/geoip/{ip}.
 
@@ -306,8 +312,10 @@ class Utility:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post(f"{self.rest.base_url}hash", payload, return_headers=return_headers)
-    
+        return await self.rest.async_post(
+            f"{self.rest.base_url}hash", payload, return_headers=return_headers
+        )
+
     async def async_qrcode(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,

@@ -9,11 +9,13 @@ import typing as t
 from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
+
 class Conversion:
     """
     The endpoint class for conversion related endpoints.
     Contains sync and async variants of the endpoint methods.
     """
+
     _rest: RESTClient
 
     def __init__(self, rest: RESTClient) -> None:

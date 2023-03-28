@@ -9,11 +9,13 @@ import typing as t
 from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
+
 class Validation:
     """
     The endpoint class for validation related endpoints.
     Contains sync and async variants of the endpoint methods.
     """
+
     _rest: RESTClient
 
     def __init__(self, rest: RESTClient) -> None:
@@ -22,7 +24,7 @@ class Validation:
     @property
     def rest(self) -> RESTClient:
         return self._rest
-    
+
     # Synchronous Methods
 
     def email(
@@ -678,7 +680,7 @@ class Validation:
             payload,
             return_headers=return_headers,
         )
-    
+
     # Asynchronous Methods
 
     async def async_email(

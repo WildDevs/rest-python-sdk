@@ -9,11 +9,13 @@ import typing as t
 from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
+
 class UrlShortener:
     """
     The endpoint class for urlshortener related endpoints.
     Contains sync and async variants of the endpoint methods.
     """
+
     _rest: RESTClient
 
     def __init__(self, rest: RESTClient) -> None:
@@ -63,7 +65,9 @@ class UrlShortener:
             f"{self.rest.base_url}urlshorteners", return_headers=return_headers
         )
 
-    def delete_url_shortener(self, url: str, *, return_headers: bool = False) -> APIResponse:
+    def delete_url_shortener(
+        self, url: str, *, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous DELETE request to https://api.wild-devs.net/v1/urlshortener{id}.
 
@@ -76,7 +80,7 @@ class UrlShortener:
         return self.rest.delete(
             f"{self.rest.base_url}urlshortener/{url}", return_headers=return_headers
         )
-    
+
     # Asynchronous Methods
 
     async def async_url_shortener(
@@ -103,7 +107,9 @@ class UrlShortener:
             return_headers=return_headers,
         )
 
-    async def async_url_shorteners(self, *, return_headers: bool = False) -> APIResponse:
+    async def async_url_shorteners(
+        self, *, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/urlshorteners.
 
@@ -117,7 +123,9 @@ class UrlShortener:
             f"{self.rest.base_url}urlshorteners", return_headers=return_headers
         )
 
-    async def async_delete_url_shortener(self, url: str, *, return_headers: bool = False) -> APIResponse:
+    async def async_delete_url_shortener(
+        self, url: str, *, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous DELETE request to https://api.wild-devs.net/v1/urlshortener{id}.
 

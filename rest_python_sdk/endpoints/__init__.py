@@ -5,5 +5,5 @@ __all__ = [
     "Random",
     "UrlShortener",
     "Utility",
-    "Validation"
+    "Validation",
 ]

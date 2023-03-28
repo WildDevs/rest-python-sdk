@@ -7,11 +7,13 @@ __all__ = [
 from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
+
 class Games:
     """
     The endpoint class for game related endpoints.
     Contains sync and async variants of the endpoint methods.
     """
+
     _rest: RESTClient
 
     def __init__(self, rest: RESTClient) -> None:
@@ -20,7 +22,7 @@ class Games:
     @property
     def rest(self) -> RESTClient:
         return self._rest
-    
+
     # Synchronous Methods
 
     def free_epicgames(self, *, return_headers: bool = False) -> APIResponse:
@@ -37,10 +39,12 @@ class Games:
         return self.rest.get(
             f"{self.rest.base_url}epicgames/free", return_headers=return_headers
         )
-    
+
     # Asynchronous Methods
 
-    async def async_free_epicgames(self, *, return_headers: bool = False) -> APIResponse:
+    async def async_free_epicgames(
+        self, *, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/epicgames/free.
 

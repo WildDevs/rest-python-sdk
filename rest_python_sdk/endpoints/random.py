@@ -9,11 +9,13 @@ import typing as t
 from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
+
 class Random:
     """
     The endpoint class for random related endpoints.
     Contains sync and async variants of the endpoint methods.
     """
+
     _rest: RESTClient
 
     def __init__(self, rest: RESTClient) -> None:
@@ -22,7 +24,7 @@ class Random:
     @property
     def rest(self) -> RESTClient:
         return self._rest
-    
+
     # Synchronous Methods
 
     def string(
@@ -88,7 +90,7 @@ class Random:
             `APIResponse`: The object created from the response.
         """
         return self.rest.get(f"{self.rest.base_url}joke", return_headers=return_headers)
-    
+
     # Asynchronous Methods
 
     async def async_string(
@@ -153,4 +155,6 @@ class Random:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get(f"{self.rest.base_url}joke", return_headers=return_headers)
+        return await self.rest.async_get(
+            f"{self.rest.base_url}joke", return_headers=return_headers
+        )
