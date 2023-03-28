@@ -102,7 +102,16 @@ class GatewayTimeoutError(WildDevsError):
         super().__init__(error)
 
 
-def send_error_response(data: dict[str, t.Any]):
+class TooManyRequestsError(WildDevsError):
+    """
+    Error raised when an API request returns code 429.
+    """
+
+    def __init__(self, error: str) -> None:
+        super().__init__(error)
+
+
+def send_error_response(data: dict[str, t.Any]) -> WildDevsError:
     code = data["code"]
     error = data["note"]
     if code == 400:
@@ -118,6 +127,7 @@ _error_dict: dict[int, type[WildDevsError]] = {
     401: UnauthorizedError,
     403: ForbiddenError,
     404: NotFoundError,
+    429: TooManyRequestsError,
     500: InternalServerError,
     502: BadGatewayError,
     503: ServiceUnavailableError,
