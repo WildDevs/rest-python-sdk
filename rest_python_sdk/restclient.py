@@ -7,6 +7,7 @@ __all__ = [
 import typing as t
 
 import requests
+import aiohttp
 
 from rest_python_sdk.models.response import APIResponse
 from rest_python_sdk.errors.errors import send_error_response
@@ -21,6 +22,7 @@ class RESTClient:
     _base_url: str
     _timeout: int
     _headers: dict[str, t.Any]
+    _session: aiohttp.ClientSession
 
     def __init__(self, base_url: str, timeout: int, headers: dict[str, t.Any]) -> None:
         self.base_url = base_url
@@ -66,6 +68,14 @@ class RESTClient:
     @headers.setter
     def headers(self, value: dict[str, t.Any]):
         self._headers = value
+    
+    @property
+    def session(self):
+        return self._session
+
+    @session.setter
+    def session(self, value: aiohttp.ClientSession):
+        self._session = value
 
     def _build_payload(self, kwargs: dict[str, t.Any]) -> dict[str, t.Any]:
         """

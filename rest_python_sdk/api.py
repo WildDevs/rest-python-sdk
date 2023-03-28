@@ -29,7 +29,6 @@ class WildDevsAPI:
     _x_api_key: str
     _headers: dict[str, t.Any]
     _rest: RESTClient
-    _session: aiohttp.ClientSession
     _conversion: Conversion
     _games: Games
     _mockup: Mockup
@@ -75,11 +74,6 @@ class WildDevsAPI:
     def rest(self) -> RESTClient:
         """The `RESTClient` of the API. Contains raw HTTP requests."""
         return self._rest
-
-    @property
-    def session(self) -> aiohttp.ClientSession:
-        """The `ClientSession` used for async requests. Has to be created using `create_session()`."""
-        return self._session
 
     @property
     def conversion(self) -> Conversion:
@@ -135,8 +129,5 @@ class WildDevsAPI:
     def create_session(self) -> None:
         """
         Method to create a `ClientSession` for asynchronous requests.
-
-        Returns:
-            `ClientSession`: The client session needed to make asynchronous requests.
         """
-        self._session = aiohttp.ClientSession(headers=self.headers)
+        self.rest.session = aiohttp.ClientSession(headers=self.headers)
