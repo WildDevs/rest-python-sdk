@@ -50,7 +50,7 @@ class Random:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return self.rest.post(
-            f"{self.rest.base_url}string", payload, return_headers=return_headers
+            "string", payload, return_headers=return_headers
         )
 
     def number(
@@ -76,7 +76,7 @@ class Random:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return self.rest.post(
-            f"{self.rest.base_url}number", payload, return_headers=return_headers
+            "number", payload, return_headers=return_headers
         )
 
     def joke(self, *, return_headers: bool = False) -> APIResponse:
@@ -89,7 +89,7 @@ class Random:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(f"{self.rest.base_url}joke", return_headers=return_headers)
+        return self.rest.get("joke", return_headers=return_headers)
 
     # Asynchronous Methods
 
@@ -116,7 +116,7 @@ class Random:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            f"{self.rest.base_url}string", payload, return_headers=return_headers
+            "string", payload, return_headers=return_headers
         )
 
     async def async_number(
@@ -142,7 +142,7 @@ class Random:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            f"{self.rest.base_url}number", payload, return_headers=return_headers
+            "number", payload, return_headers=return_headers
         )
 
     async def async_joke(self, *, return_headers: bool = False) -> APIResponse:
@@ -156,5 +156,5 @@ class Random:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"{self.rest.base_url}joke", return_headers=return_headers
+            "joke", return_headers=return_headers
         )

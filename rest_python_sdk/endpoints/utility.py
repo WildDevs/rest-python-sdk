@@ -51,7 +51,7 @@ class Utility:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return self.rest.post(
-            f"{self.rest.base_url}compile", payload, return_headers=return_headers
+            "compile", payload, return_headers=return_headers
         )
 
     def decode(
@@ -77,7 +77,7 @@ class Utility:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return self.rest.post(
-            f"{self.rest.base_url}decode", payload, return_headers=return_headers
+            "decode", payload, return_headers=return_headers
         )
 
     def encode(
@@ -103,7 +103,7 @@ class Utility:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return self.rest.post(
-            f"{self.rest.base_url}encode", payload, return_headers=return_headers
+            "encode", payload, return_headers=return_headers
         )
 
     def geoip(self, ip: str, *, return_headers: bool = False) -> APIResponse:
@@ -121,7 +121,7 @@ class Utility:
             `APIResponse`: The object created from the response.
         """
         return self.rest.get(
-            f"{self.rest.base_url}geoip/{ip}", return_headers=return_headers
+            f"geoip/{ip}", return_headers=return_headers
         )
 
     def hash(
@@ -147,7 +147,7 @@ class Utility:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return self.rest.post(
-            f"{self.rest.base_url}hash", payload, return_headers=return_headers
+            "hash", payload, return_headers=return_headers
         )
 
     def qrcode(
@@ -178,11 +178,11 @@ class Utility:
             payload = self.rest._build_payload(kwargs)
         if not create_img:
             return self.rest.post(
-                f"{self.rest.base_url}qrcode", payload, return_headers=return_headers
+                "qrcode", payload, return_headers=return_headers
             )
         else:
             data = self.rest.post(
-                f"{self.rest.base_url}qrcode", payload, return_headers=return_headers
+                "qrcode", payload, return_headers=return_headers
             )
             code = data.data[21:]
             qr = base64.b64decode(code)
@@ -215,7 +215,7 @@ class Utility:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            f"{self.rest.base_url}compile", payload, return_headers=return_headers
+            "compile", payload, return_headers=return_headers
         )
 
     async def async_decode(
@@ -241,7 +241,7 @@ class Utility:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            f"{self.rest.base_url}decode", payload, return_headers=return_headers
+            "decode", payload, return_headers=return_headers
         )
 
     async def async_encode(
@@ -267,7 +267,7 @@ class Utility:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            f"{self.rest.base_url}encode", payload, return_headers=return_headers
+            "encode", payload, return_headers=return_headers
         )
 
     async def async_geoip(
@@ -287,7 +287,7 @@ class Utility:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"{self.rest.base_url}geoip/{ip}", return_headers=return_headers
+            f"geoip/{ip}", return_headers=return_headers
         )
 
     async def async_hash(
@@ -313,7 +313,7 @@ class Utility:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            f"{self.rest.base_url}hash", payload, return_headers=return_headers
+            "hash", payload, return_headers=return_headers
         )
 
     async def async_qrcode(
@@ -344,11 +344,11 @@ class Utility:
             payload = self.rest._build_payload(kwargs)
         if not create_img:
             return await self.rest.async_post(
-                f"{self.rest.base_url}qrcode", payload, return_headers=return_headers
+                "qrcode", payload, return_headers=return_headers
             )
         else:
             data = await self.rest.async_post(
-                f"{self.rest.base_url}qrcode", payload, return_headers=return_headers
+                "qrcode", payload, return_headers=return_headers
             )
             code = data.data[21:]
             qr = base64.b64decode(code)

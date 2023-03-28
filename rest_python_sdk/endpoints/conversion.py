@@ -50,7 +50,7 @@ class Conversion:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return self.rest.post(
-            f"{self.rest.base_url}currency", payload, return_headers=return_headers
+            "currency", payload, return_headers=return_headers
         )
 
     def unit(
@@ -76,7 +76,7 @@ class Conversion:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return self.rest.post(
-            f"{self.rest.base_url}unit", payload, return_headers=return_headers
+            "unit", payload, return_headers=return_headers
         )
 
     # Asynchronous Methods
@@ -104,7 +104,7 @@ class Conversion:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            f"{self.rest.base_url}currency", payload, return_headers=return_headers
+            "currency", payload, return_headers=return_headers
         )
 
     async def async_unit(
@@ -130,5 +130,5 @@ class Conversion:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            f"{self.rest.base_url}unit", payload, return_headers=return_headers
+            "unit", payload, return_headers=return_headers
         )

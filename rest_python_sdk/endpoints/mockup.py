@@ -38,7 +38,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return self.rest.get(
-            f"{self.rest.base_url}address", return_headers=return_headers
+            "address", return_headers=return_headers
         )
 
     def company(self, *, return_headers: bool = False) -> APIResponse:
@@ -52,7 +52,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return self.rest.get(
-            f"{self.rest.base_url}company", return_headers=return_headers
+            "company", return_headers=return_headers
         )
 
     def finance(self, *, return_headers: bool = False) -> APIResponse:
@@ -66,7 +66,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return self.rest.get(
-            f"{self.rest.base_url}finance", return_headers=return_headers
+            "finance", return_headers=return_headers
         )
 
     def git(self, *, return_headers: bool = False) -> APIResponse:
@@ -79,7 +79,7 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(f"{self.rest.base_url}git", return_headers=return_headers)
+        return self.rest.get("git", return_headers=return_headers)
 
     def internet(self, *, return_headers: bool = False) -> APIResponse:
         """
@@ -92,7 +92,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return self.rest.get(
-            f"{self.rest.base_url}internet", return_headers=return_headers
+            "internet", return_headers=return_headers
         )
 
     def product(self, *, return_headers: bool = False) -> APIResponse:
@@ -106,7 +106,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return self.rest.get(
-            f"{self.rest.base_url}product", return_headers=return_headers
+            "product", return_headers=return_headers
         )
 
     def user(self, *, return_headers: bool = False) -> APIResponse:
@@ -119,7 +119,7 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(f"{self.rest.base_url}user", return_headers=return_headers)
+        return self.rest.get("user", return_headers=return_headers)
 
     def vehicle(self, *, return_headers: bool = False) -> APIResponse:
         """
@@ -132,7 +132,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return self.rest.get(
-            f"{self.rest.base_url}vehicle", return_headers=return_headers
+            "vehicle", return_headers=return_headers
         )
 
     # Asynchronous Methods
@@ -148,7 +148,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"{self.rest.base_url}address", return_headers=return_headers
+            "address", return_headers=return_headers
         )
 
     async def async_company(self, *, return_headers: bool = False) -> APIResponse:
@@ -162,7 +162,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"{self.rest.base_url}company", return_headers=return_headers
+            "company", return_headers=return_headers
         )
 
     async def async_finance(self, *, return_headers: bool = False) -> APIResponse:
@@ -176,7 +176,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"{self.rest.base_url}finance", return_headers=return_headers
+            "finance", return_headers=return_headers
         )
 
     async def async_git(self, *, return_headers: bool = False) -> APIResponse:
@@ -190,7 +190,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"{self.rest.base_url}git", return_headers=return_headers
+            "git", return_headers=return_headers
         )
 
     async def async_internet(self, *, return_headers: bool = False) -> APIResponse:
@@ -204,7 +204,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"{self.rest.base_url}internet", return_headers=return_headers
+            "internet", return_headers=return_headers
         )
 
     async def async_product(self, *, return_headers: bool = False) -> APIResponse:
@@ -218,7 +218,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"{self.rest.base_url}product", return_headers=return_headers
+            "product", return_headers=return_headers
         )
 
     async def async_user(self, *, return_headers: bool = False) -> APIResponse:
@@ -232,7 +232,7 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"{self.rest.base_url}user", return_headers=return_headers
+            "user", return_headers=return_headers
         )
 
     async def async_vehicle(self, *, return_headers: bool = False) -> APIResponse:
@@ -246,5 +246,5 @@ class Mockup:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"{self.rest.base_url}vehicle", return_headers=return_headers
+            "vehicle", return_headers=return_headers
         )
