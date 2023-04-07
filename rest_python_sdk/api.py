@@ -165,7 +165,7 @@ class WildDevsAPI:
         self._ai = AI(self._rest)
         self._nettools = NetTools(self._rest)
         self._moviefinder = MovieFinder(self._rest)
-        self._opendata = OpenData(self._opendata)
+        self._opendata = OpenData(self._rest)
 
     def create_session(self) -> None:
         """
