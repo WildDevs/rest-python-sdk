@@ -17,6 +17,10 @@ from rest_python_sdk.endpoints.random import Random
 from rest_python_sdk.endpoints.urlshortener import UrlShortener
 from rest_python_sdk.endpoints.utility import Utility
 from rest_python_sdk.endpoints.validation import Validation
+from rest_python_sdk.endpoints.ai import AI
+from rest_python_sdk.endpoints.nettools import NetTools
+from rest_python_sdk.endpoints.moviefinder import MovieFinder
+from rest_python_sdk.endpoints.opendata import OpenData 
 from rest_python_sdk.__version__ import __version__
 
 
@@ -36,6 +40,10 @@ class WildDevsAPI:
     _urlshortener: UrlShortener
     _utility: Utility
     _validation: Validation
+    _ai: AI
+    _nettools: NetTools
+    _moviefinder: MovieFinder
+    _opendata: OpenData
 
     def __init__(
         self,
@@ -56,6 +64,10 @@ class WildDevsAPI:
         self._urlshortener = UrlShortener(self._rest)
         self._utility = Utility(self._rest)
         self._validation = Validation(self._rest)
+        self._ai = AI(self._rest)
+        self._nettools = NetTools(self._rest)
+        self._moviefinder = MovieFinder(self._rest)
+        self._opendata = OpenData(self._rest)
 
     def __str__(self) -> str:
         return f"X-Api-Key: {self.x_api_key}\nHeaders: {self.headers}\nRESTClient: {self.rest}\nVersion: {__version__}"
@@ -96,6 +108,11 @@ class WildDevsAPI:
         return self._random
 
     @property
+    def utility(self) -> Utility:
+        """The class containing utility related endpoint methods."""
+        return self._utility
+
+    @property
     def urlshortener(self) -> UrlShortener:
         """The class containing urlshortener related endpoint methods."""
         return self._urlshortener
@@ -104,6 +121,26 @@ class WildDevsAPI:
     def validation(self) -> Validation:
         """The class containing validation related endpoint methods."""
         return self._validation
+    
+    @property
+    def ai(self) -> AI:
+        """The class containing AI related endpoint methods."""
+        return self._ai
+    
+    @property
+    def nettools(self) -> NetTools:
+        """The class containing net tools related endpoint methods."""
+        return self._nettools
+    
+    @property
+    def moviefinder(self) -> MovieFinder:
+        """The class containing moviefinder related endpoint methods."""
+        return self._moviefinder
+    
+    @property
+    def opendata(self) -> OpenData:
+        """The class containing open data related endpoint methods."""
+        return self._opendata
 
     def encode_api_key(self, key: str, secret: str) -> None:
         """
@@ -125,6 +162,10 @@ class WildDevsAPI:
         self._urlshortener = UrlShortener(self._rest)
         self._utility = Utility(self._rest)
         self._validation = Validation(self._rest)
+        self._ai = AI(self._rest)
+        self._nettools = NetTools(self._rest)
+        self._moviefinder = MovieFinder(self._rest)
+        self._opendata = OpenData(self._opendata)
 
     def create_session(self) -> None:
         """
