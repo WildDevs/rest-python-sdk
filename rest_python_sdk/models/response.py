@@ -23,13 +23,16 @@ class APIResponse:
     _data: t.Any
     _headers: ResponseHeaders
     _as_dict: t.Union[dict[str, str], dict[dict[str, t.Any], dict[str, str]]]
+    _xml: str
 
     def __init__(
         self,
         data: dict[str, t.Any],
+        *,
         headers: t.Optional[
             t.Union[t.MutableMapping[str, t.Any], t.Mapping[str, t.Any]]
         ] = None,
+        xml: str,
     ) -> None:
         if data["code"] >= 400:
             raise send_error_response(data)
@@ -37,6 +40,7 @@ class APIResponse:
         self.code = data["code"]
         self.message = data["message"]
         self.data = data["data"]
+        self.xml = xml
         if headers:
             self.as_dict = {"Response": data, "Headers": headers}
             self.headers = ResponseHeaders(headers)
@@ -101,3 +105,12 @@ class APIResponse:
         self, value: t.Union[dict[str, t.Any], dict[dict[str, t.Any], dict[str, str]]]
     ):
         self._as_dict = value
+
+    @property
+    def xml(self) -> str:
+        """The xml representation, if `xml=True` in the request method."""
+        return self._xml
+
+    @xml.setter
+    def xml(self, value: str) -> None:
+        self._xml = value
