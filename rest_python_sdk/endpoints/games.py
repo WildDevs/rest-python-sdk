@@ -25,7 +25,12 @@ class Games:
 
     # Synchronous Methods
 
-    def free_epicgames(self, *, return_headers: bool = False) -> APIResponse:
+    def free_epicgames(
+        self,
+        *,
+        return_headers: bool = False,
+        xml: bool = False,
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/epicgames/free.
 
@@ -36,7 +41,7 @@ class Games:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("epicgames/free", return_headers=return_headers)
+        return self.rest.get("epicgames/free", return_headers=return_headers, xml=xml)
 
     # Asynchronous Methods
 

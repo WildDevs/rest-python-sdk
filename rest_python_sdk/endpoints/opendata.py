@@ -31,6 +31,7 @@ class OpenData:
         self,
         *,
         return_headers: bool = False,
+        xml: bool = False,
     ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/domains.
@@ -41,7 +42,7 @@ class OpenData:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("domains", return_headers=return_headers)
+        return self.rest.get("domains", return_headers=return_headers, xml=xml)
 
     # Asynchronous Methods
 

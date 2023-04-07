@@ -32,6 +32,7 @@ class MovieFinder:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -49,12 +50,15 @@ class MovieFinder:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("moviefinder", payload, return_headers=return_headers)
+        return self.rest.post(
+            "moviefinder", payload, return_headers=return_headers, xml=xml
+        )
 
     def moviefinder_locales(
         self,
         *,
         return_headers: bool = False,
+        xml: bool = False,
     ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/moviefinder/locales.
@@ -65,12 +69,16 @@ class MovieFinder:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("moviefinder/locales", return_headers=return_headers)
+        return self.rest.get(
+            "moviefinder/locales", return_headers=return_headers, xml=xml
+        )
 
     def moviefinder_providers(
         self,
         *,
+        locale: str = "",
         return_headers: bool = False,
+        xml: bool = False,
     ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/moviefinder/providers.
@@ -81,7 +89,11 @@ class MovieFinder:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("moviefinder/providers", return_headers=return_headers)
+        if locale:
+            locale = f"locale={locale}"
+        return self.rest.get(
+            f"moviefinder/providers?{locale}", return_headers=return_headers, xml=xml
+        )
 
     # Asynchronous Methods
 
@@ -132,6 +144,7 @@ class MovieFinder:
     async def async_moviefinder_providers(
         self,
         *,
+        locale: str = "",
         return_headers: bool = False,
     ) -> APIResponse:
         """
@@ -143,6 +156,8 @@ class MovieFinder:
         Returns:
             `APIResponse`: The object created from the response.
         """
+        if locale:
+            locale = f"locale={locale}"
         return await self.rest.async_get(
-            "moviefinder/providers", return_headers=return_headers
+            f"moviefinder/providers?{locale}", return_headers=return_headers
         )
