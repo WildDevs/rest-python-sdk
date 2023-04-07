@@ -106,24 +106,6 @@ class Utility:
             "encode", payload, return_headers=return_headers
         )
 
-    def geoip(self, ip: str, *, return_headers: bool = False) -> APIResponse:
-        """
-        Method to send a synchronous GET request to https://api.wild-devs.net/v1/geoip/{ip}.
-
-        Args:
-            ip (`str`): The IPv4/IPv6 address to check.
-
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
-
-        Returns:
-            `APIResponse`: The object created from the response.
-        """
-        return self.rest.get(
-            f"geoip/{ip}", return_headers=return_headers
-        )
-
     def hash(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
@@ -268,26 +250,6 @@ class Utility:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
             "encode", payload, return_headers=return_headers
-        )
-
-    async def async_geoip(
-        self, ip: str, *, return_headers: bool = False
-    ) -> APIResponse:
-        """
-        Method to send an asynchronous GET request to https://api.wild-devs.net/v1/geoip/{ip}.
-
-        Args:
-            ip (`str`): The IPv4/IPv6 address to check.
-
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
-
-        Returns:
-            `APIResponse`: The object created from the response.
-        """
-        return await self.rest.async_get(
-            f"geoip/{ip}", return_headers=return_headers
         )
 
     async def async_hash(
