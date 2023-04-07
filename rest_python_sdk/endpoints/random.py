@@ -49,9 +49,7 @@ class Random:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "string", payload, return_headers=return_headers
-        )
+        return self.rest.post("string", payload, return_headers=return_headers)
 
     def number(
         self,
@@ -75,9 +73,7 @@ class Random:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "number", payload, return_headers=return_headers
-        )
+        return self.rest.post("number", payload, return_headers=return_headers)
 
     def joke(self, *, return_headers: bool = False) -> APIResponse:
         """
@@ -155,6 +151,4 @@ class Random:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get(
-            "joke", return_headers=return_headers
-        )
+        return await self.rest.async_get("joke", return_headers=return_headers)

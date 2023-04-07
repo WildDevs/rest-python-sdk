@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 __all__ = [
-    "Conversion",
+    "AI",
 ]
 
 import typing as t
@@ -10,9 +10,9 @@ from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
 
-class Conversion:
+class AI:
     """
-    The endpoint class for conversion related endpoints.
+    The endpoint class for AI related endpoints.
     Contains sync and async variants of the endpoint methods.
     """
 
@@ -27,7 +27,7 @@ class Conversion:
 
     # Synchronous Methods
 
-    def currency(
+    def dictionary(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -35,7 +35,7 @@ class Conversion:
         **kwargs: t.Any,
     ) -> APIResponse:
         """
-        Method to send a synchronous POST request to https://api.wild-devs.net/v1/currency.
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/dictionary.
 
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
@@ -49,9 +49,9 @@ class Conversion:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("currency", payload, return_headers=return_headers)
+        return self.rest.post("dictionary", payload, return_headers=return_headers)
 
-    def unit(
+    def synonyms(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -59,7 +59,7 @@ class Conversion:
         **kwargs: t.Any,
     ) -> APIResponse:
         """
-        Method to send a synchronous POST request to https://api.wild-devs.net/v1/unit.
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/synonyms.
 
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
@@ -73,11 +73,11 @@ class Conversion:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("unit", payload, return_headers=return_headers)
+        return self.rest.post("synonyms", payload, return_headers=return_headers)
 
     # Asynchronous Methods
 
-    async def async_currency(
+    async def async_dictionary(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -85,7 +85,7 @@ class Conversion:
         **kwargs: t.Any,
     ) -> APIResponse:
         """
-        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/currency.
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/dictionary.
 
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
@@ -100,10 +100,10 @@ class Conversion:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            "currency", payload, return_headers=return_headers
+            "dictionary", payload, return_headers=return_headers
         )
 
-    async def async_unit(
+    async def async_synonyms(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -111,7 +111,7 @@ class Conversion:
         **kwargs: t.Any,
     ) -> APIResponse:
         """
-        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/unit.
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/synonyms.
 
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
@@ -126,5 +126,5 @@ class Conversion:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            "unit", payload, return_headers=return_headers
+            "synonyms", payload, return_headers=return_headers
         )

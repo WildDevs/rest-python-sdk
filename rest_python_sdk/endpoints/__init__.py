@@ -6,4 +6,8 @@ __all__ = [
     "UrlShortener",
     "Utility",
     "Validation",
+    "AI",
+    "MovieFinder",
+    "NetTools",
+    "OpenData",
 ]

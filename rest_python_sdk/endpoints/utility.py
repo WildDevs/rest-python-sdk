@@ -28,6 +28,34 @@ class Utility:
 
     # Synchronous Methods
 
+    def captcha(
+        self,
+        *,
+        create_img: bool = False,
+        file_path: str = "./",
+        return_headers: bool = False,
+    ) -> APIResponse:
+        """
+        Method to send a synchronous GET request to https://api.wild-devs.net/v1/captcha.
+
+        Keyword Args:
+            create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is `False`.
+            file_path (`str`): The filepath where the .png will be created. Default is the current directory.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not create_img:
+            return self.rest.get("captcha", return_headers=return_headers)
+        else:
+            data = self.rest.get("captcha", return_headers=return_headers)
+            code = data.data["image"][22:]
+            captcha = base64.b64decode(code)
+            with open(f"{file_path}captcha.jpeg", "wb") as f:
+                f.write(captcha)
+            return data
+
     def compile(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
@@ -50,9 +78,7 @@ class Utility:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "compile", payload, return_headers=return_headers
-        )
+        return self.rest.post("compile", payload, return_headers=return_headers)
 
     def decode(
         self,
@@ -76,9 +102,7 @@ class Utility:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "decode", payload, return_headers=return_headers
-        )
+        return self.rest.post("decode", payload, return_headers=return_headers)
 
     def encode(
         self,
@@ -102,27 +126,7 @@ class Utility:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "encode", payload, return_headers=return_headers
-        )
-
-    def geoip(self, ip: str, *, return_headers: bool = False) -> APIResponse:
-        """
-        Method to send a synchronous GET request to https://api.wild-devs.net/v1/geoip/{ip}.
-
-        Args:
-            ip (`str`): The IPv4/IPv6 address to check.
-
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
-
-        Returns:
-            `APIResponse`: The object created from the response.
-        """
-        return self.rest.get(
-            f"geoip/{ip}", return_headers=return_headers
-        )
+        return self.rest.post("encode", payload, return_headers=return_headers)
 
     def hash(
         self,
@@ -146,9 +150,7 @@ class Utility:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "hash", payload, return_headers=return_headers
-        )
+        return self.rest.post("hash", payload, return_headers=return_headers)
 
     def qrcode(
         self,
@@ -166,9 +168,9 @@ class Utility:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
         Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is `False`.
             file_path (`str`): The filepath where the .png will be created. Default is the current directory.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
             **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
 
         Returns:
@@ -177,20 +179,109 @@ class Utility:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         if not create_img:
-            return self.rest.post(
-                "qrcode", payload, return_headers=return_headers
-            )
+            return self.rest.post("qrcode", payload, return_headers=return_headers)
         else:
-            data = self.rest.post(
-                "qrcode", payload, return_headers=return_headers
-            )
+            data = self.rest.post("qrcode", payload, return_headers=return_headers)
             code = data.data[21:]
             qr = base64.b64decode(code)
             with open(f"{file_path}qrcode.png", "wb") as f:
                 f.write(qr)
             return data
 
+    def nsfw(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
+    ) -> APIResponse:
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/nsfw.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not payload:
+            payload = self.rest._build_payload(kwargs)
+        return self.rest.post("nsfw", payload, return_headers=return_headers)
+
+    def tts(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
+    ) -> APIResponse:
+        """
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/tts.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not payload:
+            payload = self.rest._build_payload(kwargs)
+        return self.rest.post("tts", payload, return_headers=return_headers)
+
+    def tts_voices(
+        self,
+        *,
+        return_headers: bool = False,
+    ) -> APIResponse:
+        """
+        Method to send a synchronous GET request to https://api.wild-devs.net/v1/tts/voices.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+
+        return self.rest.get("tts/voices", return_headers=return_headers)
+
     # Asynchronous Methods
+
+    async def async_captcha(
+        self,
+        *,
+        create_img: bool = False,
+        file_path: str = "./",
+        return_headers: bool = False,
+    ) -> APIResponse:
+        """
+        Method to send an asynchronous GET request to https://api.wild-devs.net/v1/captcha.
+
+        Keyword Args:
+            create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is `False`.
+            file_path (`str`): The filepath where the .png will be created. Default is the current directory.
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not create_img:
+            return await self.rest.async_get("captcha", return_headers=return_headers)
+        else:
+            data = await self.rest.async_get("captcha", return_headers=return_headers)
+            code = data.data["image"][22:]
+            captcha = base64.b64decode(code)
+            with open(f"{file_path}captcha.jpeg", "wb") as f:
+                f.write(captcha)
+            return data
 
     async def async_compile(
         self,
@@ -270,26 +361,6 @@ class Utility:
             "encode", payload, return_headers=return_headers
         )
 
-    async def async_geoip(
-        self, ip: str, *, return_headers: bool = False
-    ) -> APIResponse:
-        """
-        Method to send an asynchronous GET request to https://api.wild-devs.net/v1/geoip/{ip}.
-
-        Args:
-            ip (`str`): The IPv4/IPv6 address to check.
-
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
-
-        Returns:
-            `APIResponse`: The object created from the response.
-        """
-        return await self.rest.async_get(
-            f"geoip/{ip}", return_headers=return_headers
-        )
-
     async def async_hash(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
@@ -355,3 +426,70 @@ class Utility:
             async with open(f"{file_path}qrcode.png", "wb") as f:
                 f.write(qr)
             return data
+
+    async def async_nsfw(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
+    ) -> APIResponse:
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/nsfw.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not payload:
+            payload = self.rest._build_payload(kwargs)
+        return await self.rest.async_post(
+            "nsfw", payload, return_headers=return_headers
+        )
+
+    async def async_tts(
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
+    ) -> APIResponse:
+        """
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/tts.
+
+        Args:
+            payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not payload:
+            payload = self.rest._build_payload(kwargs)
+        return await self.rest.async_post("tts", payload, return_headers=return_headers)
+
+    async def async_tts_voices(
+        self,
+        *,
+        return_headers: bool = False,
+    ) -> APIResponse:
+        """
+        Method to send an asynchronous GET request to https://api.wild-devs.net/v1/tts/voices.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+
+        return await self.rest.async_get("tts/voices", return_headers=return_headers)

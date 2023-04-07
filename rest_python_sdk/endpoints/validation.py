@@ -59,9 +59,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "email", payload, return_headers=return_headers
-        )
+        return self.rest.post("email", payload, return_headers=return_headers)
 
     def btc(
         self,
@@ -86,9 +84,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "btc", payload, return_headers=return_headers
-        )
+        return self.rest.post("btc", payload, return_headers=return_headers)
 
     def eth(
         self,
@@ -113,9 +109,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "eth", payload, return_headers=return_headers
-        )
+        return self.rest.post("eth", payload, return_headers=return_headers)
 
     def bic(
         self,
@@ -140,9 +134,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "bic", payload, return_headers=return_headers
-        )
+        return self.rest.post("bic", payload, return_headers=return_headers)
 
     def creditcard(
         self,
@@ -196,9 +188,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "ean", payload, return_headers=return_headers
-        )
+        return self.rest.post("ean", payload, return_headers=return_headers)
 
     def fqdn(
         self,
@@ -223,9 +213,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "fqdn", payload, return_headers=return_headers
-        )
+        return self.rest.post("fqdn", payload, return_headers=return_headers)
 
     def iban(
         self,
@@ -250,9 +238,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "iban", payload, return_headers=return_headers
-        )
+        return self.rest.post("iban", payload, return_headers=return_headers)
 
     def imei(
         self,
@@ -278,9 +264,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "imei", payload, return_headers=return_headers
-        )
+        return self.rest.post("imei", payload, return_headers=return_headers)
 
     def ip(
         self,
@@ -305,9 +289,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "ip", payload, return_headers=return_headers
-        )
+        return self.rest.post("ip", payload, return_headers=return_headers)
 
     def identitycard(
         self,
@@ -361,9 +343,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "isbn", payload, return_headers=return_headers
-        )
+        return self.rest.post("isbn", payload, return_headers=return_headers)
 
     def isin(
         self,
@@ -388,9 +368,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "isin", payload, return_headers=return_headers
-        )
+        return self.rest.post("isin", payload, return_headers=return_headers)
 
     def issn(
         self,
@@ -415,9 +393,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "issn", payload, return_headers=return_headers
-        )
+        return self.rest.post("issn", payload, return_headers=return_headers)
 
     def mac(
         self,
@@ -443,9 +419,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "mac", payload, return_headers=return_headers
-        )
+        return self.rest.post("mac", payload, return_headers=return_headers)
 
     def magnet(
         self,
@@ -470,9 +444,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "magnet", payload, return_headers=return_headers
-        )
+        return self.rest.post("magnet", payload, return_headers=return_headers)
 
     def mimetype(
         self,
@@ -497,9 +469,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "mimetype", payload, return_headers=return_headers
-        )
+        return self.rest.post("mimetype", payload, return_headers=return_headers)
 
     def password(
         self,
@@ -536,9 +506,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "password", payload, return_headers=return_headers
-        )
+        return self.rest.post("password", payload, return_headers=return_headers)
 
     def uuid(
         self,
@@ -563,9 +531,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "uuid", payload, return_headers=return_headers
-        )
+        return self.rest.post("uuid", payload, return_headers=return_headers)
 
     def tax(
         self,
@@ -591,9 +557,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "tax", payload, return_headers=return_headers
-        )
+        return self.rest.post("tax", payload, return_headers=return_headers)
 
     def semver(
         self,
@@ -618,9 +582,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "semver", payload, return_headers=return_headers
-        )
+        return self.rest.post("semver", payload, return_headers=return_headers)
 
     def licenseplate(
         self,
@@ -742,9 +704,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post(
-            "btc", payload, return_headers=return_headers
-        )
+        return await self.rest.async_post("btc", payload, return_headers=return_headers)
 
     async def async_eth(
         self,
@@ -769,9 +729,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post(
-            "eth", payload, return_headers=return_headers
-        )
+        return await self.rest.async_post("eth", payload, return_headers=return_headers)
 
     async def async_bic(
         self,
@@ -796,9 +754,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post(
-            "bic", payload, return_headers=return_headers
-        )
+        return await self.rest.async_post("bic", payload, return_headers=return_headers)
 
     async def async_creditcard(
         self,
@@ -852,9 +808,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post(
-            "ean", payload, return_headers=return_headers
-        )
+        return await self.rest.async_post("ean", payload, return_headers=return_headers)
 
     async def async_fqdn(
         self,
@@ -961,9 +915,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post(
-            "ip", payload, return_headers=return_headers
-        )
+        return await self.rest.async_post("ip", payload, return_headers=return_headers)
 
     async def async_identitycard(
         self,
@@ -1099,9 +1051,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post(
-            "mac", payload, return_headers=return_headers
-        )
+        return await self.rest.async_post("mac", payload, return_headers=return_headers)
 
     async def async_magnet(
         self,
@@ -1247,9 +1197,7 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post(
-            "tax", payload, return_headers=return_headers
-        )
+        return await self.rest.async_post("tax", payload, return_headers=return_headers)
 
     async def async_semver(
         self,

@@ -68,7 +68,7 @@ class RESTClient:
     @headers.setter
     def headers(self, value: dict[str, t.Any]):
         self._headers = value
-    
+
     @property
     def session(self):
         return self._session
