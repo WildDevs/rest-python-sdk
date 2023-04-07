@@ -20,7 +20,7 @@ from rest_python_sdk.endpoints.validation import Validation
 from rest_python_sdk.endpoints.ai import AI
 from rest_python_sdk.endpoints.nettools import NetTools
 from rest_python_sdk.endpoints.moviefinder import MovieFinder
-from rest_python_sdk.endpoints.opendata import OpenData 
+from rest_python_sdk.endpoints.opendata import OpenData
 from rest_python_sdk.__version__ import __version__
 
 
@@ -121,22 +121,22 @@ class WildDevsAPI:
     def validation(self) -> Validation:
         """The class containing validation related endpoint methods."""
         return self._validation
-    
+
     @property
     def ai(self) -> AI:
         """The class containing AI related endpoint methods."""
         return self._ai
-    
+
     @property
     def nettools(self) -> NetTools:
         """The class containing net tools related endpoint methods."""
         return self._nettools
-    
+
     @property
     def moviefinder(self) -> MovieFinder:
         """The class containing moviefinder related endpoint methods."""
         return self._moviefinder
-    
+
     @property
     def opendata(self) -> OpenData:
         """The class containing open data related endpoint methods."""

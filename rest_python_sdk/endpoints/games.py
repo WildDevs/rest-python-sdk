@@ -36,9 +36,7 @@ class Games:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(
-            "epicgames/free", return_headers=return_headers
-        )
+        return self.rest.get("epicgames/free", return_headers=return_headers)
 
     # Asynchronous Methods
 

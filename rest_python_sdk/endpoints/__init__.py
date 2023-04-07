@@ -9,5 +9,5 @@ __all__ = [
     "AI",
     "MovieFinder",
     "NetTools",
-    "OpenData"
+    "OpenData",
 ]

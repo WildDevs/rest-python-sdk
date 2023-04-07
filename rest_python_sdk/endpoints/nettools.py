@@ -9,6 +9,7 @@ import typing as t
 from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
+
 class NetTools:
     """
     The endpoint class for net tools related endpoints.
@@ -39,9 +40,7 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(
-            f"dnslookup?{source}", return_headers=return_headers
-        )
+        return self.rest.get(f"dnslookup?{source}", return_headers=return_headers)
 
     def ipinfo(self, ip: str, *, return_headers: bool = False) -> APIResponse:
         """
@@ -56,9 +55,7 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(
-            f"ipinfo?{ip}", return_headers=return_headers
-        )
+        return self.rest.get(f"ipinfo?{ip}", return_headers=return_headers)
 
     def geoip(self, ip: str, *, return_headers: bool = False) -> APIResponse:
         """
@@ -73,9 +70,7 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(
-            f"geoip/{ip}", return_headers=return_headers
-        )
+        return self.rest.get(f"geoip/{ip}", return_headers=return_headers)
 
     def whatsmyip(self, *, return_headers: bool = False) -> APIResponse:
         """
@@ -87,9 +82,7 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(
-            "whatsmyip", return_headers=return_headers
-        )
+        return self.rest.get("whatsmyip", return_headers=return_headers)
 
     # Asynchronous Methods
 
@@ -127,9 +120,7 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get(
-            f"ipinfo?{ip}", return_headers=return_headers
-        )
+        return await self.rest.async_get(f"ipinfo?{ip}", return_headers=return_headers)
 
     async def async_geoip(
         self, ip: str, *, return_headers: bool = False
@@ -146,13 +137,9 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get(
-            f"geoip/{ip}", return_headers=return_headers
-        )
+        return await self.rest.async_get(f"geoip/{ip}", return_headers=return_headers)
 
-    async def async_whatsmyip(
-        self, *, return_headers: bool = False
-    ) -> APIResponse:
+    async def async_whatsmyip(self, *, return_headers: bool = False) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/whatsmyip.
 
@@ -162,6 +149,4 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get(
-            "whatsmyip", return_headers=return_headers
-        )
+        return await self.rest.async_get("whatsmyip", return_headers=return_headers)

@@ -9,6 +9,7 @@ import typing as t
 from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
+
 class OpenData:
     """
     The endpoint class for open data related endpoints.
@@ -40,10 +41,8 @@ class OpenData:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(
-            "domains", return_headers=return_headers
-        )
-    
+        return self.rest.get("domains", return_headers=return_headers)
+
     # Asynchronous Methods
 
     async def async_domains(
@@ -60,6 +59,4 @@ class OpenData:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get(
-            "domains", return_headers=return_headers
-        )
+        return await self.rest.async_get("domains", return_headers=return_headers)

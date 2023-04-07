@@ -9,6 +9,7 @@ import typing as t
 from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
+
 class AI:
     """
     The endpoint class for AI related endpoints.
@@ -23,15 +24,15 @@ class AI:
     @property
     def rest(self) -> RESTClient:
         return self._rest
-    
+
     # Synchronous Methods
 
     def dictionary(
-            self,
-            payload: t.Optional[dict[str, t.Any]] = None,
-            *,
-            return_headers: bool = False,
-            **kwargs: t.Any,
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
     ) -> APIResponse:
         """
         Method to send a synchronous POST request to https://api.wild-devs.net/v1/dictionary.
@@ -48,16 +49,14 @@ class AI:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "dictionary", payload, return_headers=return_headers
-        )
-    
+        return self.rest.post("dictionary", payload, return_headers=return_headers)
+
     def synonyms(
-            self,
-            payload: t.Optional[dict[str, t.Any]] = None,
-            *,
-            return_headers: bool = False,
-            **kwargs: t.Any,
+        self,
+        payload: t.Optional[dict[str, t.Any]] = None,
+        *,
+        return_headers: bool = False,
+        **kwargs: t.Any,
     ) -> APIResponse:
         """
         Method to send a synchronous POST request to https://api.wild-devs.net/v1/synonyms.
@@ -74,10 +73,8 @@ class AI:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "synonyms", payload, return_headers=return_headers
-        )
-    
+        return self.rest.post("synonyms", payload, return_headers=return_headers)
+
     # Asynchronous Methods
 
     async def async_dictionary(
@@ -105,7 +102,7 @@ class AI:
         return await self.rest.async_post(
             "dictionary", payload, return_headers=return_headers
         )
-    
+
     async def async_synonyms(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,

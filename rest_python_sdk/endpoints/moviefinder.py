@@ -9,6 +9,7 @@ import typing as t
 from rest_python_sdk.restclient import RESTClient
 from rest_python_sdk.models.response import APIResponse
 
+
 class MovieFinder:
     """
     The endpoint class for moviefinder related endpoints.
@@ -48,9 +49,7 @@ class MovieFinder:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "moviefinder", payload, return_headers=return_headers
-        )
+        return self.rest.post("moviefinder", payload, return_headers=return_headers)
 
     def moviefinder_locales(
         self,
@@ -66,9 +65,7 @@ class MovieFinder:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(
-            "moviefinder/locales", return_headers=return_headers
-        )
+        return self.rest.get("moviefinder/locales", return_headers=return_headers)
 
     def moviefinder_providers(
         self,
@@ -84,9 +81,7 @@ class MovieFinder:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(
-            "moviefinder/providers", return_headers=return_headers
-        )
+        return self.rest.get("moviefinder/providers", return_headers=return_headers)
 
     # Asynchronous Methods
 

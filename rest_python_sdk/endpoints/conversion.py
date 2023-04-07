@@ -49,9 +49,7 @@ class Conversion:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "currency", payload, return_headers=return_headers
-        )
+        return self.rest.post("currency", payload, return_headers=return_headers)
 
     def unit(
         self,
@@ -75,9 +73,7 @@ class Conversion:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "unit", payload, return_headers=return_headers
-        )
+        return self.rest.post("unit", payload, return_headers=return_headers)
 
     # Asynchronous Methods
 

@@ -61,9 +61,7 @@ class UrlShortener:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(
-            "urlshorteners", return_headers=return_headers
-        )
+        return self.rest.get("urlshorteners", return_headers=return_headers)
 
     def delete_url_shortener(
         self, url: str, *, return_headers: bool = False
@@ -77,9 +75,7 @@ class UrlShortener:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.delete(
-            f"urlshortener/{url}", return_headers=return_headers
-        )
+        return self.rest.delete(f"urlshortener/{url}", return_headers=return_headers)
 
     # Asynchronous Methods
 
@@ -119,9 +115,7 @@ class UrlShortener:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get(
-            "urlshorteners", return_headers=return_headers
-        )
+        return await self.rest.async_get("urlshorteners", return_headers=return_headers)
 
     async def async_delete_url_shortener(
         self, url: str, *, return_headers: bool = False
