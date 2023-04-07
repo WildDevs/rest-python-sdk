@@ -27,7 +27,14 @@ class Mockup:
 
     # Synchronous Methods
 
-    def address(self, *, return_headers: bool = False) -> APIResponse:
+    def address(
+        self,
+        *,
+        locale: str = "en",
+        count: int = 1,
+        return_headers: bool = False,
+        xml: bool = False,
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/address.
 
@@ -37,9 +44,15 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("address", return_headers=return_headers)
+        return self.rest.get(
+            f"address?locale={locale}&count={count}",
+            return_headers=return_headers,
+            xml=xml,
+        )
 
-    def company(self, *, return_headers: bool = False) -> APIResponse:
+    def company(
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/company.
 
@@ -49,9 +62,13 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("company", return_headers=return_headers)
+        return self.rest.get(
+            f"company?count={count}", return_headers=return_headers, xml=xml
+        )
 
-    def finance(self, *, return_headers: bool = False) -> APIResponse:
+    def finance(
+        self, *, count: int = 1, xml: bool = False, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/finance.
 
@@ -61,9 +78,13 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("finance", return_headers=return_headers)
+        return self.rest.get(
+            f"finance?count={count}", return_headers=return_headers, xml=xml
+        )
 
-    def git(self, *, return_headers: bool = False) -> APIResponse:
+    def git(
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/git.
 
@@ -73,9 +94,13 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("git", return_headers=return_headers)
+        return self.rest.get(
+            f"git?count={count}", return_headers=return_headers, xml=xml
+        )
 
-    def internet(self, *, return_headers: bool = False) -> APIResponse:
+    def internet(
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/internet.
 
@@ -85,9 +110,13 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("internet", return_headers=return_headers)
+        return self.rest.get(
+            f"internet?count={count}", return_headers=return_headers, xml=xml
+        )
 
-    def product(self, *, return_headers: bool = False) -> APIResponse:
+    def product(
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/product.
 
@@ -97,9 +126,21 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("product", return_headers=return_headers)
+        return self.rest.get(
+            f"product?count={count}", return_headers=return_headers, xml=xml
+        )
 
-    def user(self, *, return_headers: bool = False) -> APIResponse:
+    def user(
+        self,
+        *,
+        locale: str = "en",
+        count: int = 1,
+        sex: str = "",
+        address: bool = False,
+        finance: bool = False,
+        return_headers: bool = False,
+        xml: bool = False,
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/user.
 
@@ -109,9 +150,22 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("user", return_headers=return_headers)
+        query_string = ""
+        if sex in ["male", "female"]:
+            query_string += f"&sex={sex}"
+        if address:
+            query_string += "&address"
+        if finance:
+            query_string += "&finance"
+        return self.rest.get(
+            f"user?locale={locale}&count={count}{query_string}",
+            return_headers=return_headers,
+            xml=xml,
+        )
 
-    def vehicle(self, *, return_headers: bool = False) -> APIResponse:
+    def vehicle(
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/vehicle.
 
@@ -121,11 +175,15 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("vehicle", return_headers=return_headers)
+        return self.rest.get(
+            f"vehicle?count={count}", return_headers=return_headers, xml=xml
+        )
 
     # Asynchronous Methods
 
-    async def async_address(self, *, return_headers: bool = False) -> APIResponse:
+    async def async_address(
+        self, *, locale: str = "en", count: int = 1, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/address.
 
@@ -135,9 +193,13 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get("address", return_headers=return_headers)
+        return await self.rest.async_get(
+            f"address?locale={locale}&count={count}", return_headers=return_headers
+        )
 
-    async def async_company(self, *, return_headers: bool = False) -> APIResponse:
+    async def async_company(
+        self, *, count: int = 1, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/company.
 
@@ -147,9 +209,13 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get("company", return_headers=return_headers)
+        return await self.rest.async_get(
+            f"company?count={count}", return_headers=return_headers
+        )
 
-    async def async_finance(self, *, return_headers: bool = False) -> APIResponse:
+    async def async_finance(
+        self, *, count: int = 1, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/finance.
 
@@ -159,9 +225,13 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get("finance", return_headers=return_headers)
+        return await self.rest.async_get(
+            f"finance?count={count}", return_headers=return_headers
+        )
 
-    async def async_git(self, *, return_headers: bool = False) -> APIResponse:
+    async def async_git(
+        self, *, count: int = 1, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/git.
 
@@ -171,9 +241,13 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get("git", return_headers=return_headers)
+        return await self.rest.async_get(
+            f"git?count={count}", return_headers=return_headers
+        )
 
-    async def async_internet(self, *, return_headers: bool = False) -> APIResponse:
+    async def async_internet(
+        self, *, count: int = 1, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/internet.
 
@@ -183,9 +257,13 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get("internet", return_headers=return_headers)
+        return await self.rest.async_get(
+            f"internet?count={count}", return_headers=return_headers
+        )
 
-    async def async_product(self, *, return_headers: bool = False) -> APIResponse:
+    async def async_product(
+        self, *, count: int = 1, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/product.
 
@@ -195,9 +273,20 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get("product", return_headers=return_headers)
+        return await self.rest.async_get(
+            f"product?count={count}", return_headers=return_headers
+        )
 
-    async def async_user(self, *, return_headers: bool = False) -> APIResponse:
+    async def async_user(
+        self,
+        *,
+        locale: str = "en",
+        sex: str = "",
+        count: int = 1,
+        address: bool = False,
+        finance: bool = False,
+        return_headers: bool = False,
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/user.
 
@@ -207,9 +296,21 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get("user", return_headers=return_headers)
+        query_string = ""
+        if sex in ["male", "female"]:
+            query_string += f"&sex={sex}"
+        if address:
+            query_string += "&address"
+        if finance:
+            query_string += "&finance"
+        return await self.rest.async_get(
+            f"user?locale={locale}&count={count}{query_string}",
+            return_headers=return_headers,
+        )
 
-    async def async_vehicle(self, *, return_headers: bool = False) -> APIResponse:
+    async def async_vehicle(
+        self, *, count: int = 1, return_headers: bool = False
+    ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/vehicle.
 
@@ -219,4 +320,6 @@ class Mockup:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get("vehicle", return_headers=return_headers)
+        return await self.rest.async_get(
+            f"vehicle?count={count}", return_headers=return_headers
+        )

@@ -32,6 +32,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -59,13 +60,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("email", payload, return_headers=return_headers)
+        return self.rest.post("email", payload, return_headers=return_headers, xml=xml)
 
     def btc(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -84,13 +86,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("btc", payload, return_headers=return_headers)
+        return self.rest.post("btc", payload, return_headers=return_headers, xml=xml)
 
     def eth(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -109,13 +112,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("eth", payload, return_headers=return_headers)
+        return self.rest.post("eth", payload, return_headers=return_headers, xml=xml)
 
     def bic(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -134,13 +138,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("bic", payload, return_headers=return_headers)
+        return self.rest.post("bic", payload, return_headers=return_headers, xml=xml)
 
     def creditcard(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -163,6 +168,7 @@ class Validation:
             "creditcard",
             payload,
             return_headers=return_headers,
+            xml=xml,
         )
 
     def ean(
@@ -170,6 +176,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -188,13 +195,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("ean", payload, return_headers=return_headers)
+        return self.rest.post("ean", payload, return_headers=return_headers, xml=xml)
 
     def fqdn(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -213,13 +221,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("fqdn", payload, return_headers=return_headers)
+        return self.rest.post("fqdn", payload, return_headers=return_headers, xml=xml)
 
     def iban(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -238,13 +247,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("iban", payload, return_headers=return_headers)
+        return self.rest.post("iban", payload, return_headers=return_headers, xml=xml)
 
     def imei(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -264,13 +274,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("imei", payload, return_headers=return_headers)
+        return self.rest.post("imei", payload, return_headers=return_headers, xml=xml)
 
     def ip(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -289,13 +300,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("ip", payload, return_headers=return_headers)
+        return self.rest.post("ip", payload, return_headers=return_headers, xml=xml)
 
     def identitycard(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -318,6 +330,7 @@ class Validation:
             "identitycard",
             payload,
             return_headers=return_headers,
+            xml=xml,
         )
 
     def isbn(
@@ -325,6 +338,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -343,13 +357,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("isbn", payload, return_headers=return_headers)
+        return self.rest.post("isbn", payload, return_headers=return_headers, xml=xml)
 
     def isin(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -368,13 +383,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("isin", payload, return_headers=return_headers)
+        return self.rest.post("isin", payload, return_headers=return_headers, xml=xml)
 
     def issn(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -393,13 +409,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("issn", payload, return_headers=return_headers)
+        return self.rest.post("issn", payload, return_headers=return_headers, xml=xml)
 
     def mac(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -419,13 +436,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("mac", payload, return_headers=return_headers)
+        return self.rest.post("mac", payload, return_headers=return_headers, xml=xml)
 
     def magnet(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -444,13 +462,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("magnet", payload, return_headers=return_headers)
+        return self.rest.post("magnet", payload, return_headers=return_headers, xml=xml)
 
     def mimetype(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -469,13 +488,16 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("mimetype", payload, return_headers=return_headers)
+        return self.rest.post(
+            "mimetype", payload, return_headers=return_headers, xml=xml
+        )
 
     def password(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -506,13 +528,16 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("password", payload, return_headers=return_headers)
+        return self.rest.post(
+            "password", payload, return_headers=return_headers, xml=xml
+        )
 
     def uuid(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -531,13 +556,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("uuid", payload, return_headers=return_headers)
+        return self.rest.post("uuid", payload, return_headers=return_headers, xml=xml)
 
     def tax(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -557,13 +583,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("tax", payload, return_headers=return_headers)
+        return self.rest.post("tax", payload, return_headers=return_headers, xml=xml)
 
     def semver(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -582,13 +609,14 @@ class Validation:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("semver", payload, return_headers=return_headers)
+        return self.rest.post("semver", payload, return_headers=return_headers, xml=xml)
 
     def licenseplate(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -612,6 +640,7 @@ class Validation:
             "licenseplate",
             payload,
             return_headers=return_headers,
+            xml=xml,
         )
 
     def postalcode(
@@ -619,6 +648,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -641,6 +671,7 @@ class Validation:
             "postalcode",
             payload,
             return_headers=return_headers,
+            xml=xml,
         )
 
     # Asynchronous Methods

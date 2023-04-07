@@ -32,6 +32,7 @@ class Random:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -49,13 +50,14 @@ class Random:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("string", payload, return_headers=return_headers)
+        return self.rest.post("string", payload, return_headers=return_headers, xml=xml)
 
     def number(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -73,9 +75,9 @@ class Random:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("number", payload, return_headers=return_headers)
+        return self.rest.post("number", payload, return_headers=return_headers, xml=xml)
 
-    def joke(self, *, return_headers: bool = False) -> APIResponse:
+    def joke(self, *, return_headers: bool = False, xml: bool = False) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/joke.
 
@@ -85,7 +87,7 @@ class Random:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("joke", return_headers=return_headers)
+        return self.rest.get("joke", return_headers=return_headers, xml=xml)
 
     # Asynchronous Methods
 

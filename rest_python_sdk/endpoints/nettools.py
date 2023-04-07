@@ -27,7 +27,9 @@ class NetTools:
 
     # Synchronous Methods
 
-    def dnslookup(self, source: str, *, return_headers: bool = False) -> APIResponse:
+    def dnslookup(
+        self, source: str, *, return_headers: bool = False, xml: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/dnslookup.
 
@@ -40,9 +42,13 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(f"dnslookup?{source}", return_headers=return_headers)
+        return self.rest.get(
+            f"dnslookup?source={source}", return_headers=return_headers, xml=xml
+        )
 
-    def ipinfo(self, ip: str, *, return_headers: bool = False) -> APIResponse:
+    def ipinfo(
+        self, ip: str, *, return_headers: bool = False, xml: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/ipinfo.
 
@@ -55,9 +61,13 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(f"ipinfo?{ip}", return_headers=return_headers)
+        return self.rest.get(
+            f"ipinfo?source={ip}", return_headers=return_headers, xml=xml
+        )
 
-    def geoip(self, ip: str, *, return_headers: bool = False) -> APIResponse:
+    def geoip(
+        self, ip: str, *, return_headers: bool = False, xml: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/geoip/{ip}.
 
@@ -70,9 +80,11 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get(f"geoip/{ip}", return_headers=return_headers)
+        return self.rest.get(f"geoip/{ip}", return_headers=return_headers, xml=xml)
 
-    def whatsmyip(self, *, return_headers: bool = False) -> APIResponse:
+    def whatsmyip(
+        self, *, return_headers: bool = False, xml: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/whatsmyip.
 
@@ -82,7 +94,7 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("whatsmyip", return_headers=return_headers)
+        return self.rest.get("whatsmyip", return_headers=return_headers, xml=xml)
 
     # Asynchronous Methods
 
@@ -102,7 +114,7 @@ class NetTools:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"dnslookup?{source}", return_headers=return_headers
+            f"dnslookup?source={source}", return_headers=return_headers
         )
 
     async def async_ipinfo(
@@ -120,7 +132,9 @@ class NetTools:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self.rest.async_get(f"ipinfo?{ip}", return_headers=return_headers)
+        return await self.rest.async_get(
+            f"ipinfo?source={ip}", return_headers=return_headers
+        )
 
     async def async_geoip(
         self, ip: str, *, return_headers: bool = False

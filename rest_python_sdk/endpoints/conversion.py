@@ -32,6 +32,7 @@ class Conversion:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -49,13 +50,16 @@ class Conversion:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("currency", payload, return_headers=return_headers)
+        return self.rest.post(
+            "currency", payload, return_headers=return_headers, xml=xml
+        )
 
     def unit(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -73,7 +77,7 @@ class Conversion:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("unit", payload, return_headers=return_headers)
+        return self.rest.post("unit", payload, return_headers=return_headers, xml=xml)
 
     # Asynchronous Methods
 

@@ -32,11 +32,14 @@ class UrlShortener:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
         Method to send a synchronous POST request to https://api.wild-devs.net/v1/urlshortener.
 
+        Args:
+            payload (`Optional`[`dict`[`str`, `Any`]]): The payload to send to the endpoint.
         Keyword Args:
             return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
 
@@ -46,12 +49,12 @@ class UrlShortener:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return self.rest.post(
-            "urlshortener",
-            payload,
-            return_headers=return_headers,
+            "urlshortener", payload, return_headers=return_headers, xml=xml
         )
 
-    def url_shorteners(self, *, return_headers: bool = False) -> APIResponse:
+    def url_shorteners(
+        self, *, return_headers: bool = False, xml: bool = False
+    ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/urlshorteners.
 
@@ -61,7 +64,7 @@ class UrlShortener:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return self.rest.get("urlshorteners", return_headers=return_headers)
+        return self.rest.get("urlshorteners", return_headers=return_headers, xml=xml)
 
     def delete_url_shortener(
         self, url: str, *, return_headers: bool = False
