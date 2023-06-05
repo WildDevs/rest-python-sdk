@@ -7,8 +7,8 @@ __all__ = [
 import typing as t
 from dataclasses import dataclass
 
-from rest_python_sdk.errors.errors import send_error_response
-from rest_python_sdk.models.response_headers import ResponseHeaders
+from wild_devs_api.errors.errors import send_error_response
+from wild_devs_api.models.response_headers import ResponseHeaders
 
 
 @dataclass

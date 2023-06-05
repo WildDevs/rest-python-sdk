@@ -4,8 +4,8 @@ __all__ = [
     "Games",
 ]
 
-from rest_python_sdk.restclient import RESTClient
-from rest_python_sdk.models.response import APIResponse
+from wild_devs_api.restclient import RESTClient
+from wild_devs_api.models.response import APIResponse
 
 
 class Games:

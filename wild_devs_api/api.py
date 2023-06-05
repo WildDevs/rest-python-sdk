@@ -9,19 +9,19 @@ import typing as t
 
 import aiohttp
 
-from rest_python_sdk.restclient import RESTClient
-from rest_python_sdk.endpoints.conversion import Conversion
-from rest_python_sdk.endpoints.games import Games
-from rest_python_sdk.endpoints.mockup import Mockup
-from rest_python_sdk.endpoints.random import Random
-from rest_python_sdk.endpoints.urlshortener import UrlShortener
-from rest_python_sdk.endpoints.utility import Utility
-from rest_python_sdk.endpoints.validation import Validation
-from rest_python_sdk.endpoints.ai import AI
-from rest_python_sdk.endpoints.nettools import NetTools
-from rest_python_sdk.endpoints.moviefinder import MovieFinder
-from rest_python_sdk.endpoints.opendata import OpenData
-from rest_python_sdk.__version__ import __version__
+from wild_devs_api.restclient import RESTClient
+from wild_devs_api.endpoints.conversion import Conversion
+from wild_devs_api.endpoints.games import Games
+from wild_devs_api.endpoints.mockup import Mockup
+from wild_devs_api.endpoints.random import Random
+from wild_devs_api.endpoints.urlshortener import UrlShortener
+from wild_devs_api.endpoints.utility import Utility
+from wild_devs_api.endpoints.validation import Validation
+from wild_devs_api.endpoints.ai import AI
+from wild_devs_api.endpoints.nettools import NetTools
+from wild_devs_api.endpoints.moviefinder import MovieFinder
+from wild_devs_api.endpoints.opendata import OpenData
+from wild_devs_api.__version__ import __version__
 
 
 class WildDevsAPI:

@@ -9,8 +9,8 @@ import typing as t
 import requests
 import aiohttp
 
-from rest_python_sdk.models.response import APIResponse
-from rest_python_sdk.errors.errors import send_error_response
+from wild_devs_api.models.response import APIResponse
+from wild_devs_api.errors.errors import send_error_response
 
 
 class RESTClient:

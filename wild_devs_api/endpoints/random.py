@@ -1,18 +1,18 @@
 from __future__ import annotations
 
 __all__ = [
-    "Conversion",
+    "Random",
 ]
 
 import typing as t
 
-from rest_python_sdk.restclient import RESTClient
-from rest_python_sdk.models.response import APIResponse
+from wild_devs_api.restclient import RESTClient
+from wild_devs_api.models.response import APIResponse
 
 
-class Conversion:
+class Random:
     """
-    The endpoint class for conversion related endpoints.
+    The endpoint class for random related endpoints.
     Contains sync and async variants of the endpoint methods.
     """
 
@@ -27,7 +27,7 @@ class Conversion:
 
     # Synchronous Methods
 
-    def currency(
+    def string(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -36,7 +36,7 @@ class Conversion:
         **kwargs: t.Any,
     ) -> APIResponse:
         """
-        Method to send a synchronous POST request to https://api.wild-devs.net/v1/currency.
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/string.
 
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
@@ -50,11 +50,9 @@ class Conversion:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post(
-            "currency", payload, return_headers=return_headers, xml=xml
-        )
+        return self.rest.post("string", payload, return_headers=return_headers, xml=xml)
 
-    def unit(
+    def number(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -63,7 +61,7 @@ class Conversion:
         **kwargs: t.Any,
     ) -> APIResponse:
         """
-        Method to send a synchronous POST request to https://api.wild-devs.net/v1/unit.
+        Method to send a synchronous POST request to https://api.wild-devs.net/v1/number.
 
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
@@ -77,11 +75,23 @@ class Conversion:
         """
         if not payload:
             payload = self.rest._build_payload(kwargs)
-        return self.rest.post("unit", payload, return_headers=return_headers, xml=xml)
+        return self.rest.post("number", payload, return_headers=return_headers, xml=xml)
+
+    def joke(self, *, return_headers: bool = False, xml: bool = False) -> APIResponse:
+        """
+        Method to send a synchronous GET request to https://api.wild-devs.net/v1/joke.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        return self.rest.get("joke", return_headers=return_headers, xml=xml)
 
     # Asynchronous Methods
 
-    async def async_currency(
+    async def async_string(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -89,7 +99,7 @@ class Conversion:
         **kwargs: t.Any,
     ) -> APIResponse:
         """
-        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/currency.
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/string.
 
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
@@ -104,10 +114,10 @@ class Conversion:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            "currency", payload, return_headers=return_headers
+            "string", payload, return_headers=return_headers
         )
 
-    async def async_unit(
+    async def async_number(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
@@ -115,7 +125,7 @@ class Conversion:
         **kwargs: t.Any,
     ) -> APIResponse:
         """
-        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/unit.
+        Method to send an asynchronous POST request to https://api.wild-devs.net/v1/number.
 
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
@@ -130,5 +140,17 @@ class Conversion:
         if not payload:
             payload = self.rest._build_payload(kwargs)
         return await self.rest.async_post(
-            "unit", payload, return_headers=return_headers
+            "number", payload, return_headers=return_headers
         )
+
+    async def async_joke(self, *, return_headers: bool = False) -> APIResponse:
+        """
+        Method to send an asynchronous GET request to https://api.wild-devs.net/v1/joke.
+
+        Keyword Args:
+            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        return await self.rest.async_get("joke", return_headers=return_headers)
