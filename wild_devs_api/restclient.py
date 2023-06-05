@@ -69,14 +69,6 @@ class RESTClient:
     def headers(self, value: dict[str, t.Any]):
         self._headers = value
 
-    @property
-    def session(self):
-        return self._session
-
-    @session.setter
-    def session(self, value: aiohttp.ClientSession):
-        self._session = value
-
     def _build_payload(self, kwargs: dict[str, t.Any]) -> dict[str, t.Any]:
         """
         Helper method to create a payload from passed `**kwargs` if no payload has been supplied.
@@ -118,7 +110,7 @@ class RESTClient:
         if not return_headers:
             return APIResponse(r.json(), xml=xml_string)
         else:
-            return APIResponse(r.json(), r.headers, xml=xml_string)
+            return APIResponse(r.json(), headers=r.headers, xml=xml_string)
 
     def get(self, endpoint: str, return_headers: bool = False, xml: bool = False):
         """
@@ -197,8 +189,8 @@ class RESTClient:
         payload: t.Optional[dict[str, t.Any]] = None,
         return_headers: bool = False,
     ):
-        async with self.session.request(
-            method, f"{self.base_url}{endpoint}", json=payload
+        async with aiohttp.request(
+            method, f"{self.base_url}{endpoint}", json=payload, headers=self.headers
         ) as r:
             if r.status == 404:
                 resp = {"code": r.status, "note": f"{r.url} {r.reason}"}
@@ -206,7 +198,7 @@ class RESTClient:
             if not return_headers:
                 return APIResponse(await r.json(), xml="")
             else:
-                return APIResponse(await r.json(), r.headers, xml="")
+                return APIResponse(await r.json(), headers=r.headers, xml="")
 
     async def async_get(self, endpoint: str, *, return_headers: bool = False):
         """

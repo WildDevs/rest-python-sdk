@@ -166,9 +166,3 @@ class WildDevsAPI:
         self._nettools = NetTools(self._rest)
         self._moviefinder = MovieFinder(self._rest)
         self._opendata = OpenData(self._rest)
-
-    def create_session(self) -> None:
-        """
-        Method to create a `ClientSession` for asynchronous requests.
-        """
-        self.rest.session = aiohttp.ClientSession(headers=self.headers)
