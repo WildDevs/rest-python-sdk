@@ -69,7 +69,7 @@ class RESTClient:
     def headers(self, value: dict[str, t.Any]):
         self._headers = value
 
-    def _build_payload(self, kwargs: dict[str, t.Any]) -> dict[str, t.Any]:
+    def build_payload(self, kwargs: dict[str, t.Any]) -> dict[str, t.Any]:
         """
         Helper method to create a payload from passed `**kwargs` if no payload has been supplied.
 
@@ -112,7 +112,7 @@ class RESTClient:
         else:
             return APIResponse(r.json(), headers=r.headers, xml=xml_string)
 
-    def get(self, endpoint: str, return_headers: bool = False, xml: bool = False):
+    def get(self, endpoint: str, return_headers: bool = False, xml: bool = False) -> APIResponse:
         """
         Synchronous GET request.
 
@@ -131,7 +131,7 @@ class RESTClient:
         payload: dict[str, t.Any],
         return_headers: bool = False,
         xml: bool = False,
-    ):
+    ) -> APIResponse:
         """
         Synchronous POST request.
 
@@ -153,7 +153,7 @@ class RESTClient:
         payload: dict[str, t.Any],
         return_headers: bool = False,
         xml: bool = False,
-    ):
+    ) -> APIResponse:
         """
         Synchronous PUT request.
 
@@ -169,7 +169,7 @@ class RESTClient:
             "PUT", endpoint, payload, return_headers=return_headers, xml=xml
         )
 
-    def delete(self, endpoint: str, return_headers: bool = False, xml: bool = False):
+    def delete(self, endpoint: str, return_headers: bool = False, xml: bool = False) -> APIResponse:
         """
         Synchronous DELETE request.
 
@@ -188,19 +188,32 @@ class RESTClient:
         endpoint: str,
         payload: t.Optional[dict[str, t.Any]] = None,
         return_headers: bool = False,
-    ):
+        xml: bool = False
+    ) -> APIResponse:
+        xml_string = ""
         async with aiohttp.request(
             method, f"{self.base_url}{endpoint}", json=payload, headers=self.headers
         ) as r:
             if r.status == 404:
                 resp = {"code": r.status, "note": f"{r.url} {r.reason}"}
                 raise send_error_response(resp)
+            if xml:
+                if "?" in endpoint:
+                    xml_query_string = "&xml"
+                else:
+                    xml_query_string = "?xml"
+                xml_string = requests.request(
+                    method,
+                    f"{self.base_url + endpoint + xml_query_string}",
+                    headers=self.headers,
+                    json=payload,
+                ).text
             if not return_headers:
-                return APIResponse(await r.json(), xml="")
+                return APIResponse(await r.json(), xml=xml_string)
             else:
-                return APIResponse(await r.json(), headers=r.headers, xml="")
+                return APIResponse(await r.json(), headers=r.headers, xml=xml_string)
 
-    async def async_get(self, endpoint: str, *, return_headers: bool = False):
+    async def async_get(self, endpoint: str, *, return_headers: bool = False, xml: bool = False) -> APIResponse:
         """
         Asynchronous GET request.
 
@@ -211,14 +224,15 @@ class RESTClient:
         Returns:
             `APIResponse`: The object created from the response.
         """
-        return await self._async_request("GET", endpoint, return_headers=return_headers)
+        return await self._async_request("GET", endpoint, return_headers=return_headers, xml=xml)
 
     async def async_post(
         self,
         endpoint: str,
         payload: dict[str, t.Any],
         return_headers: bool = False,
-    ):
+        xml: bool = False
+    ) -> APIResponse:
         """
         Asynchronous POST request.
 
@@ -231,7 +245,7 @@ class RESTClient:
             `APIResponse`: The object created from the response.
         """
         return await self._async_request(
-            "POST", endpoint, payload, return_headers=return_headers
+            "POST", endpoint, payload, return_headers=return_headers, xml=xml
         )
 
     async def async_put(
@@ -239,7 +253,8 @@ class RESTClient:
         endpoint: str,
         payload: dict[str, t.Any],
         return_headers: bool = False,
-    ):
+        xml: bool = False
+    ) -> APIResponse:
         """
         Asynchronous PUT request.
 
@@ -252,10 +267,10 @@ class RESTClient:
             `APIResponse`: The object created from the response.
         """
         return await self._async_request(
-            "PUT", endpoint, payload, return_headers=return_headers
+            "PUT", endpoint, payload, return_headers=return_headers, xml=xml
         )
 
-    async def async_delete(self, endpoint: str, return_headers: bool = False):
+    async def async_delete(self, endpoint: str, return_headers: bool = False, xml: bool = False) -> APIResponse:
         """
         Asynchronous DELETE request.
 
@@ -267,5 +282,5 @@ class RESTClient:
             `APIResponse`: The object created from the response.
         """
         return await self._async_request(
-            "DELETE", endpoint, return_headers=return_headers
+            "DELETE", endpoint, return_headers=return_headers, xml=xml
         )

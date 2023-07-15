@@ -59,7 +59,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("email", payload, return_headers=return_headers, xml=xml)
 
     def btc(
@@ -85,7 +85,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("btc", payload, return_headers=return_headers, xml=xml)
 
     def eth(
@@ -111,7 +111,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("eth", payload, return_headers=return_headers, xml=xml)
 
     def bic(
@@ -137,7 +137,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("bic", payload, return_headers=return_headers, xml=xml)
 
     def creditcard(
@@ -163,7 +163,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post(
             "creditcard",
             payload,
@@ -194,7 +194,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("ean", payload, return_headers=return_headers, xml=xml)
 
     def fqdn(
@@ -220,7 +220,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("fqdn", payload, return_headers=return_headers, xml=xml)
 
     def iban(
@@ -246,7 +246,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("iban", payload, return_headers=return_headers, xml=xml)
 
     def imei(
@@ -273,7 +273,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("imei", payload, return_headers=return_headers, xml=xml)
 
     def ip(
@@ -299,7 +299,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("ip", payload, return_headers=return_headers, xml=xml)
 
     def identitycard(
@@ -325,7 +325,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post(
             "identitycard",
             payload,
@@ -356,7 +356,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("isbn", payload, return_headers=return_headers, xml=xml)
 
     def isin(
@@ -382,7 +382,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("isin", payload, return_headers=return_headers, xml=xml)
 
     def issn(
@@ -408,7 +408,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("issn", payload, return_headers=return_headers, xml=xml)
 
     def mac(
@@ -435,7 +435,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("mac", payload, return_headers=return_headers, xml=xml)
 
     def magnet(
@@ -461,7 +461,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("magnet", payload, return_headers=return_headers, xml=xml)
 
     def mimetype(
@@ -487,7 +487,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post(
             "mimetype", payload, return_headers=return_headers, xml=xml
         )
@@ -527,7 +527,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post(
             "password", payload, return_headers=return_headers, xml=xml
         )
@@ -555,7 +555,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("uuid", payload, return_headers=return_headers, xml=xml)
 
     def tax(
@@ -582,7 +582,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("tax", payload, return_headers=return_headers, xml=xml)
 
     def semver(
@@ -608,7 +608,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("semver", payload, return_headers=return_headers, xml=xml)
 
     def licenseplate(
@@ -635,7 +635,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post(
             "licenseplate",
             payload,
@@ -666,7 +666,7 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post(
             "postalcode",
             payload,
@@ -681,6 +681,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -707,9 +708,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "email", payload, return_headers=return_headers
+            "email", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_btc(
@@ -717,6 +718,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -734,14 +736,15 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post("btc", payload, return_headers=return_headers)
+            payload = self.rest.build_payload(kwargs)
+        return await self.rest.async_post("btc", payload, return_headers=return_headers, xml=xml)
 
     async def async_eth(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -759,14 +762,15 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post("eth", payload, return_headers=return_headers)
+            payload = self.rest.build_payload(kwargs)
+        return await self.rest.async_post("eth", payload, return_headers=return_headers, xml=xml)
 
     async def async_bic(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -784,14 +788,15 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post("bic", payload, return_headers=return_headers)
+            payload = self.rest.build_payload(kwargs)
+        return await self.rest.async_post("bic", payload, return_headers=return_headers, xml=xml)
 
     async def async_creditcard(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -809,11 +814,12 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
             "creditcard",
             payload,
             return_headers=return_headers,
+            xml=xml
         )
 
     async def async_ean(
@@ -821,6 +827,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -838,14 +845,15 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post("ean", payload, return_headers=return_headers)
+            payload = self.rest.build_payload(kwargs)
+        return await self.rest.async_post("ean", payload, return_headers=return_headers, xml=xml)
 
     async def async_fqdn(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -863,9 +871,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "fqdn", payload, return_headers=return_headers
+            "fqdn", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_iban(
@@ -873,6 +881,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -890,9 +899,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "iban", payload, return_headers=return_headers
+            "iban", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_imei(
@@ -900,6 +909,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -918,9 +928,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "imei", payload, return_headers=return_headers
+            "imei", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_ip(
@@ -928,6 +938,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -945,14 +956,15 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post("ip", payload, return_headers=return_headers)
+            payload = self.rest.build_payload(kwargs)
+        return await self.rest.async_post("ip", payload, return_headers=return_headers, xml=xml)
 
     async def async_identitycard(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -970,11 +982,12 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
             "identitycard",
             payload,
             return_headers=return_headers,
+            xml=xml
         )
 
     async def async_isbn(
@@ -982,6 +995,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -999,9 +1013,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "isbn", payload, return_headers=return_headers
+            "isbn", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_isin(
@@ -1009,6 +1023,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1026,9 +1041,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "isin", payload, return_headers=return_headers
+            "isin", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_issn(
@@ -1036,6 +1051,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1053,9 +1069,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "issn", payload, return_headers=return_headers
+            "issn", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_mac(
@@ -1063,6 +1079,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1081,14 +1098,15 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post("mac", payload, return_headers=return_headers)
+            payload = self.rest.build_payload(kwargs)
+        return await self.rest.async_post("mac", payload, return_headers=return_headers, xml=xml)
 
     async def async_magnet(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1106,9 +1124,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "magnet", payload, return_headers=return_headers
+            "magnet", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_mimetype(
@@ -1116,6 +1134,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1133,9 +1152,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "mimetype", payload, return_headers=return_headers
+            "mimetype", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_password(
@@ -1143,6 +1162,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1172,9 +1192,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "password", payload, return_headers=return_headers
+            "password", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_uuid(
@@ -1182,6 +1202,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1199,9 +1220,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "uuid", payload, return_headers=return_headers
+            "uuid", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_tax(
@@ -1209,6 +1230,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1227,14 +1249,15 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post("tax", payload, return_headers=return_headers)
+            payload = self.rest.build_payload(kwargs)
+        return await self.rest.async_post("tax", payload, return_headers=return_headers, xml=xml)
 
     async def async_semver(
         self,
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1252,9 +1275,9 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "semver", payload, return_headers=return_headers
+            "semver", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_licenseplate(
@@ -1262,6 +1285,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1280,11 +1304,12 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
             "licenseplate",
             payload,
             return_headers=return_headers,
+            xml=xml
         )
 
     async def async_postalcode(
@@ -1292,6 +1317,7 @@ class Validation:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -1309,9 +1335,10 @@ class Validation:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
             "postalcode",
             payload,
             return_headers=return_headers,
+            xml=xml
         )

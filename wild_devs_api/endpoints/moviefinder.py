@@ -41,15 +41,15 @@ class MovieFinder:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post(
             "moviefinder", payload, return_headers=return_headers, xml=xml
         )
@@ -63,8 +63,9 @@ class MovieFinder:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/moviefinder/locales.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -83,8 +84,8 @@ class MovieFinder:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/moviefinder/providers.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -102,6 +103,7 @@ class MovieFinder:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -110,35 +112,36 @@ class MovieFinder:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "moviefinder", payload, return_headers=return_headers
+            "moviefinder", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_moviefinder_locales(
         self,
         *,
         return_headers: bool = False,
+        xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/moviefinder/locales.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            "moviefinder/locales", return_headers=return_headers
+            "moviefinder/locales", return_headers=return_headers, xml=xml
         )
 
     async def async_moviefinder_providers(
@@ -146,12 +149,13 @@ class MovieFinder:
         *,
         locale: str = "",
         return_headers: bool = False,
+        xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/moviefinder/providers.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -159,5 +163,5 @@ class MovieFinder:
         if locale:
             locale = f"locale={locale}"
         return await self.rest.async_get(
-            f"moviefinder/providers?{locale}", return_headers=return_headers
+            f"moviefinder/providers?{locale}", return_headers=return_headers, xml=xml
         )
