@@ -4,8 +4,6 @@ __all__ = [
     "Mockup",
 ]
 
-import typing as t
-
 from wild_devs_api.restclient import RESTClient
 from wild_devs_api.models.response import APIResponse
 
@@ -38,8 +36,8 @@ class Mockup:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/address.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -56,8 +54,8 @@ class Mockup:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/company.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -67,13 +65,13 @@ class Mockup:
         )
 
     def finance(
-        self, *, count: int = 1, xml: bool = False, return_headers: bool = False
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
     ) -> APIResponse:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/finance.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -88,8 +86,8 @@ class Mockup:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/git.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -104,8 +102,8 @@ class Mockup:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/internet.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -120,8 +118,8 @@ class Mockup:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/product.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -144,8 +142,8 @@ class Mockup:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/user.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -169,8 +167,8 @@ class Mockup:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/vehicle.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -182,99 +180,99 @@ class Mockup:
     # Asynchronous Methods
 
     async def async_address(
-        self, *, locale: str = "en", count: int = 1, return_headers: bool = False
+        self, *, locale: str = "en", count: int = 1, return_headers: bool = False, xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/address.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"address?locale={locale}&count={count}", return_headers=return_headers
+            f"address?locale={locale}&count={count}", return_headers=return_headers, xml=xml
         )
 
     async def async_company(
-        self, *, count: int = 1, return_headers: bool = False
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/company.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"company?count={count}", return_headers=return_headers
+            f"company?count={count}", return_headers=return_headers, xml=xml
         )
 
     async def async_finance(
-        self, *, count: int = 1, return_headers: bool = False
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/finance.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"finance?count={count}", return_headers=return_headers
+            f"finance?count={count}", return_headers=return_headers, xml=xml
         )
 
     async def async_git(
-        self, *, count: int = 1, return_headers: bool = False
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/git.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"git?count={count}", return_headers=return_headers
+            f"git?count={count}", return_headers=return_headers, xml=xml
         )
 
     async def async_internet(
-        self, *, count: int = 1, return_headers: bool = False
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/internet.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"internet?count={count}", return_headers=return_headers
+            f"internet?count={count}", return_headers=return_headers, xml=xml
         )
 
     async def async_product(
-        self, *, count: int = 1, return_headers: bool = False
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/product.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"product?count={count}", return_headers=return_headers
+            f"product?count={count}", return_headers=return_headers, xml=xml
         )
 
     async def async_user(
@@ -286,12 +284,13 @@ class Mockup:
         address: bool = False,
         finance: bool = False,
         return_headers: bool = False,
+        xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/user.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -305,21 +304,21 @@ class Mockup:
             query_string += "&finance"
         return await self.rest.async_get(
             f"user?locale={locale}&count={count}{query_string}",
-            return_headers=return_headers,
+            return_headers=return_headers, xml=xml
         )
 
     async def async_vehicle(
-        self, *, count: int = 1, return_headers: bool = False
+        self, *, count: int = 1, return_headers: bool = False, xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/vehicle.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            f"vehicle?count={count}", return_headers=return_headers
+            f"vehicle?count={count}", return_headers=return_headers, xml=xml
         )

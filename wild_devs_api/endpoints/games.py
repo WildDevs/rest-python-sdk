@@ -34,9 +34,9 @@ class Games:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/epicgames/free.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -46,18 +46,18 @@ class Games:
     # Asynchronous Methods
 
     async def async_free_epicgames(
-        self, *, return_headers: bool = False
+        self, *, return_headers: bool = False, xml: bool = False,
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/epicgames/free.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         return await self.rest.async_get(
-            "epicgames/free", return_headers=return_headers
+            "epicgames/free", return_headers=return_headers, xml=xml
         )

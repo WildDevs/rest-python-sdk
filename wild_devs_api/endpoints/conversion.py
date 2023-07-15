@@ -41,15 +41,15 @@ class Conversion:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post(
             "currency", payload, return_headers=return_headers, xml=xml
         )
@@ -68,15 +68,15 @@ class Conversion:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("unit", payload, return_headers=return_headers, xml=xml)
 
     # Asynchronous Methods
@@ -86,6 +86,7 @@ class Conversion:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -94,17 +95,17 @@ class Conversion:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "currency", payload, return_headers=return_headers
+            "currency", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_unit(
@@ -112,6 +113,7 @@ class Conversion:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -120,15 +122,15 @@ class Conversion:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "unit", payload, return_headers=return_headers
+            "unit", payload, return_headers=return_headers, xml=xml
         )

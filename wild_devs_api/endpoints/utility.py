@@ -28,6 +28,33 @@ class Utility:
 
     # Synchronous Methods
 
+    def plagiarism(
+            self,
+            payload: t.Optional[dict[str, t.Any]] = None,
+            *,
+            return_headers: bool = False,
+            xml: bool = False,
+            **kwargs: t.Any
+            ) -> APIResponse:
+        """
+        Method to send a synchronous POST request to https://api.wild-dev.net/v1/plagiarism.
+
+        Args:
+            payload (`Optional`[`dict`[`str`, `Any`]]): The payload to send to the endpoint.
+
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not payload:
+            payload = self.rest.build_payload(kwargs)
+        return self.rest.post(
+            "plagiarism", payload, return_headers=return_headers, xml=xml
+        )
+
     def captcha(
         self,
         *,
@@ -43,10 +70,10 @@ class Utility:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/captcha.
 
-        Keyword Args:
-            create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is `False`.
-            file_path (`str`): The filepath where the .png will be created. Default is the current directory.
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is
+        `False`. file_path (`str`): The filepath where the .png will be created. Default is the current directory.
+        return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is
+        `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -83,15 +110,15 @@ class Utility:
         Args:
             payload (`Optional`[`dict`[`str`, `Any`]]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post(
             "compile", payload, return_headers=return_headers, xml=xml
         )
@@ -110,8 +137,8 @@ class Utility:
         Args:
             payload (`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -132,8 +159,8 @@ class Utility:
         Args:
             payload (`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -154,15 +181,15 @@ class Utility:
         Args:
             payload (`Optional`[`dict`[`str`, `Any`]]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("hash", payload, return_headers=return_headers, xml=xml)
 
     def qrcode(
@@ -181,17 +208,16 @@ class Utility:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is `False`.
-            file_path (`str`): The filepath where the .png will be created. Default is the current directory.
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is
+        `False`. file_path (`str`): The filepath where the .png will be created. Default is the current directory.
+        return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is
+        `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         if not create_img:
             return self.rest.post(
                 "qrcode", payload, return_headers=return_headers, xml=xml
@@ -220,15 +246,15 @@ class Utility:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("nsfw", payload, return_headers=return_headers, xml=xml)
 
     def tts(
@@ -245,15 +271,15 @@ class Utility:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return self.rest.post("tts", payload, return_headers=return_headers, xml=xml)
 
     def tts_voices(
@@ -265,8 +291,8 @@ class Utility:
         """
         Method to send a synchronous GET request to https://api.wild-devs.net/v1/tts/voices.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -275,6 +301,33 @@ class Utility:
         return self.rest.get("tts/voices", return_headers=return_headers, xml=xml)
 
     # Asynchronous Methods
+
+    async def async_plagiarism(
+            self,
+            payload: t.Optional[dict[str, t.Any]] = None,
+            *,
+            return_headers: bool = False,
+            xml: bool = False,
+            **kwargs: t.Any
+            ) -> APIResponse:
+        """
+        Method to send an asynchronous POST request to https://api.wild-dev.net/v1/plagiarism.
+
+        Args:
+            payload (`Optional`[`dict`[`str`, `Any`]]): The payload to send to the endpoint.
+
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
+
+        Returns:
+            `APIResponse`: The object created from the response.
+        """
+        if not payload:
+            payload = self.rest.build_payload(kwargs)
+        return await self.rest.async_post(
+            "plagiarism", payload, return_headers=return_headers, xml=xml
+        )
 
     async def async_captcha(
         self,
@@ -286,14 +339,15 @@ class Utility:
         create_img: bool = False,
         file_path: str = "./",
         return_headers: bool = False,
+        xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/captcha.
 
-        Keyword Args:
-            create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is `False`.
-            file_path (`str`): The filepath where the .png will be created. Default is the current directory.
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is
+        `False`. file_path (`str`): The filepath where the .png will be created. Default is the current directory.
+        return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is
+        `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
@@ -301,12 +355,12 @@ class Utility:
         if not create_img:
             return await self.rest.async_get(
                 f"captcha?length={length}&height={height}&width={width}&charset={charset}",
-                return_headers=return_headers,
+                return_headers=return_headers, xml=xml
             )
         else:
             data = await self.rest.async_get(
                 f"captcha?length={length}&height={height}&width={width}&charset={charset}",
-                return_headers=return_headers,
+                return_headers=return_headers, xml=xml
             )
             code = data.data["image"][22:]
             captcha = base64.b64decode(code)
@@ -319,6 +373,7 @@ class Utility:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -327,15 +382,15 @@ class Utility:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
             "compile", payload, return_headers=return_headers
         )
@@ -345,6 +400,7 @@ class Utility:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -353,17 +409,17 @@ class Utility:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "decode", payload, return_headers=return_headers
+            "decode", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_encode(
@@ -371,6 +427,7 @@ class Utility:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -379,17 +436,17 @@ class Utility:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "encode", payload, return_headers=return_headers
+            "encode", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_hash(
@@ -397,6 +454,7 @@ class Utility:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -405,15 +463,15 @@ class Utility:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
             "hash", payload, return_headers=return_headers
         )
@@ -425,6 +483,7 @@ class Utility:
         create_img: bool = False,
         file_path: str = "./",
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -433,24 +492,23 @@ class Utility:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            create_img (`bool`): Decides if a .png will be created from the generated QR-code. Default is `False`.
-            file_path (`str`): The filepath where the .png will be created. Default is the current directory.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. create_img (`bool`): Decides if a .png will be created from the generated
+        QR-code. Default is `False`. file_path (`str`): The filepath where the .png will be created. Default is the
+        current directory. **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         if not create_img:
             return await self.rest.async_post(
-                "qrcode", payload, return_headers=return_headers
+                "qrcode", payload, return_headers=return_headers, xml=xml
             )
         else:
             data = await self.rest.async_post(
-                "qrcode", payload, return_headers=return_headers
+                "qrcode", payload, return_headers=return_headers, xml=xml
             )
             code = data.data[21:]
             qr = base64.b64decode(code)
@@ -463,6 +521,7 @@ class Utility:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -471,17 +530,17 @@ class Utility:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
+            payload = self.rest.build_payload(kwargs)
         return await self.rest.async_post(
-            "nsfw", payload, return_headers=return_headers
+            "nsfw", payload, return_headers=return_headers, xml=xml
         )
 
     async def async_tts(
@@ -489,6 +548,7 @@ class Utility:
         payload: t.Optional[dict[str, t.Any]] = None,
         *,
         return_headers: bool = False,
+        xml: bool = False,
         **kwargs: t.Any,
     ) -> APIResponse:
         """
@@ -497,30 +557,31 @@ class Utility:
         Args:
             payload (Optional`dict`[`str`, `Any`]): The payload to send to the endpoint.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
-            **kwargs (`Any`): The additional kwargs that have to be passed if payload is `None`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`. **kwargs (`Any`): The additional kwargs that have to be passed if payload
+        is `None`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
         if not payload:
-            payload = self.rest._build_payload(kwargs)
-        return await self.rest.async_post("tts", payload, return_headers=return_headers)
+            payload = self.rest.build_payload(kwargs)
+        return await self.rest.async_post("tts", payload, return_headers=return_headers, xml=xml)
 
     async def async_tts_voices(
         self,
         *,
         return_headers: bool = False,
+        xml: bool = False
     ) -> APIResponse:
         """
         Method to send an asynchronous GET request to https://api.wild-devs.net/v1/tts/voices.
 
-        Keyword Args:
-            return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the `APIResponse`. Default is `False`.
+        Keyword Args: return_headers (`bool`): Decides if the `ResponseHeaders` should be included in the
+        `APIResponse`. Default is `False`.
 
         Returns:
             `APIResponse`: The object created from the response.
         """
 
-        return await self.rest.async_get("tts/voices", return_headers=return_headers)
+        return await self.rest.async_get("tts/voices", return_headers=return_headers, xml=xml)
